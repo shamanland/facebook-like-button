@@ -1,0 +1,16 @@
+.gradle
+.idea
+*.iml
+build
+*/gen
+*~
+*.tmp
+*.log
+*.bak
+local.properties
+
+# files from device
+traces.txt
+
+# reports
+reports/
