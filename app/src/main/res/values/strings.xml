@@ -4,6 +4,6 @@
     <string name="app_name">FacebookLikeButton</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="like">Like</string>
+    <string name="com_facebook_like">Like</string>
 
 </resources>

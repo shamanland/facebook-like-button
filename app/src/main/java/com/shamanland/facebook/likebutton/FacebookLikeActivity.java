@@ -3,18 +3,28 @@ package com.shamanland.facebook.likebutton;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.Html;
+import android.util.Base64;
 import android.view.SoundEffectConstants;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
 
+import java.io.ByteArrayOutputStream;
 import java.net.URLEncoder;
 import java.util.LinkedList;
 
 public class FacebookLikeActivity extends Activity {
+    public static final String APP_ID = "app.id";
+    public static final String URL = "url";
+    public static final String TITLE = "title";
+    public static final String TEXT = "text";
+    public static final String PICTURE = "picture";
+
     private FrameLayout mFrame;
     private final LinkedList<WebView> mWindows;
     private final WebChromeClient mWebChromeClient;
@@ -58,25 +68,48 @@ public class FacebookLikeActivity extends Activity {
         mFrame = new FrameLayout(getContext());
         setContentView(mFrame);
 
-        String url = getIntent().getStringExtra(FacebookLikeButtonOwner.URL);
-        String title = getIntent().getStringExtra(FacebookLikeButtonOwner.TITLE);
-        String text = getIntent().getStringExtra(FacebookLikeButtonOwner.TEXT);
-        Bitmap picture = getIntent().getParcelableExtra(FacebookLikeButtonOwner.PICTURE);
+        String appId = getIntent().getStringExtra(APP_ID);
+        String url = getIntent().getStringExtra(URL);
+        String title = getIntent().getStringExtra(TITLE);
+        String text = getIntent().getStringExtra(TEXT);
+        Bitmap picture = getIntent().getParcelableExtra(PICTURE);
 
         StringBuilder sb = new StringBuilder();
         sb.append("<!DOCTYPE html>");
         sb.append("<html>");
         sb.append("<body>");
-        sb.append("<h1>");
-        sb.append(title);
-        sb.append("</h1>");
-        sb.append("<p>");
-        sb.append(text);
-        sb.append("</p>");
 
-        sb.append("<iframe src=\"//www.facebook.com/plugins/like.php?href=");
-        sb.append(URLEncoder.encode(url));
-        sb.append("&amp;width&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80&amp;appId=690014507725915\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; height:80px;\" allowTransparency=\"true\"></iframe>");
+        if (title != null) {
+            sb.append("<h1>");
+            sb.append(escapeHtml(title, false));
+            sb.append("</h1>");
+        }
+
+        if (picture != null) {
+            sb.append("<img align=\"left\" style=\"margin:4px;\"");
+            sb.append("src=\"data:image/png;base64,");
+            sb.append(bitmapToBase64(picture));
+            sb.append("\"/>");
+        }
+
+        if (text != null) {
+            sb.append("<p>");
+            sb.append(escapeHtml(text, false));
+            sb.append("</p>");
+        }
+
+        if (url != null) {
+            sb.append("<iframe src=\"//www.facebook.com/plugins/like.php?href=");
+            sb.append(URLEncoder.encode(url));
+            sb.append("&amp;width&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80&amp;");
+
+            if (appId != null) {
+                sb.append("appId=");
+                sb.append(appId);
+            }
+
+            sb.append("\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; height:80px;\" allowTransparency=\"true\"></iframe>");
+        }
 
         sb.append("</body>");
         sb.append("</html>");
@@ -117,5 +150,27 @@ public class FacebookLikeActivity extends Activity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    public static String escapeHtml(String unsecure, boolean noSpaces) {
+        final String result;
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+            result = Html.fromHtml(unsecure).toString();
+        } else {
+            result = Html.escapeHtml(unsecure);
+        }
+
+        if (noSpaces) {
+            return result.replaceAll("\\s+", "%20");
+        }
+
+        return result;
+    }
+
+    public static String bitmapToBase64(Bitmap picture) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        picture.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
     }
 }
