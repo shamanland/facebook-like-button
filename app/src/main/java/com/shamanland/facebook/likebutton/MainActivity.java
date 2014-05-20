@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBarActivity;
 
 import com.facebook.Session;
 import com.facebook.UiLifecycleHelper;
-import com.shamanland.facebook.ActivityFacebookSessionOwner;
 
 public class MainActivity extends ActionBarActivity {
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
@@ -40,7 +39,14 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
         FacebookLikeButton like = (FacebookLikeButton) findViewById(R.id.facebook_like);
-        like.setOwner(new ActivityFacebookSessionOwner(this, FACEBOOK_LOGIN_REQUEST_CODE));
+        like.setOwner(new FacebookLikeButtonOwner() {
+            @Override
+            public Bundle getMetaData(String url) {
+                Bundle bundle = new Bundle();
+                bundle.putString(TITLE, "This is Google");
+                return bundle;
+            }
+        });
 
         like.setUrl("http://google.com/");
     }

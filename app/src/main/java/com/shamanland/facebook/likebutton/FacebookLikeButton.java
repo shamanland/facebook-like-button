@@ -1,6 +1,7 @@
 package com.shamanland.facebook.likebutton;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.AttributeSet;
@@ -16,18 +17,16 @@ import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.model.GraphObject;
-import com.shamanland.facebook.FacebookSessionOwner;
 
 public class FacebookLikeButton extends Button {
     private static final String LOG_TAG = FacebookLikeButton.class.getSimpleName();
 
-    private FacebookSessionOwner mOwner;
-    private Session.StatusCallback mStatusCallback;
+    private FacebookLikeButtonOwner mOwner;
     private boolean mAttachedToWindow;
 
     private String mUrl;
 
-    public void setOwner(FacebookSessionOwner owner) {
+    public void setOwner(FacebookLikeButtonOwner owner) {
         mOwner = owner;
     }
 
@@ -57,13 +56,6 @@ public class FacebookLikeButton extends Button {
     }
 
     private void postInit() {
-        mStatusCallback = new Session.StatusCallback() {
-            @Override
-            public void call(Session session, SessionState state, Exception exception) {
-                onSessionStateChange(session, state, exception);
-            }
-        };
-
         setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,27 +107,28 @@ public class FacebookLikeButton extends Button {
         }
     }
 
-    protected boolean onClick() {
-        boolean result = false;
-
-        FacebookSessionOwner owner = mOwner;
-        if (owner != null) {
-            Session session = owner.getSession();
-            if (session != null) {
-                if (!session.isOpened() && !session.isClosed()) {
-                    owner.openForPublish(session, mStatusCallback, "publish_actions");
-                } else {
-                    if (session.isPermissionGranted("publish_actions")) {
-                        performLikeRequest(session);
-                        result = true;
-                    } else {
-                        owner.requestNewPublishPermissions(session, mStatusCallback, "publish_actions");
-                    }
-                }
-            }
+    protected void onClick() {
+        String url = mUrl;
+        if (url == null) {
+            return;
         }
 
-        return result;
+        Bundle meta = null;
+
+        FacebookLikeButtonOwner owner = mOwner;
+        if (owner != null) {
+            meta = owner.getMetaData(url);
+        }
+
+        if (meta == null) {
+            meta = new Bundle();
+        }
+
+        meta.putString(FacebookLikeButtonOwner.URL, url);
+
+        Intent intent = new Intent(getContext(), FacebookLikeActivity.class);
+        intent.putExtras(meta);
+        getContext().startActivity(intent);
     }
 
     public void performLikeRequest(Session session) {
