@@ -32,7 +32,13 @@ public class FacebookLikeButton extends Button {
     }
 
     public void setUrl(String value) {
+        boolean changed = mUrl == null && value != null || mUrl != null && !mUrl.equals(value);
+
         mUrl = value;
+
+        if (changed) {
+            onUrlChanged();
+        }
     }
 
     public FacebookLikeButton(Context context) {
@@ -85,6 +91,27 @@ public class FacebookLikeButton extends Button {
 
         if (exception != null) {
             Log.wtf(LOG_TAG, exception);
+        }
+    }
+
+    protected void onUrlChanged() {
+        if (mUrl != null) {
+            new FacebookGetLikesCountTask(new FacebookGetLikesCountTaskListener() {
+                @Override
+                public void onPostExecute(int result) {
+                    if (mAttachedToWindow) {
+                        onGetLikesCountCompleted(result);
+                    }
+                }
+            }).execute(mUrl);
+        }
+    }
+
+    protected void onGetLikesCountCompleted(int result) {
+        if (result < 0) {
+            Toast.makeText(getContext(), "failed get count: " + result, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getContext(), "get count: " + result, Toast.LENGTH_SHORT).show();
         }
     }
 
