@@ -81,34 +81,47 @@ public class FacebookLikeActivity extends Activity {
 
         if (title != null) {
             sb.append("<h1>");
-            sb.append(escapeHtml(title, false));
+            sb.append(escapeHtml(title));
             sb.append("</h1>");
         }
 
         if (picture != null) {
-            sb.append("<img align=\"left\" style=\"margin:4px;\"");
-            sb.append("src=\"data:image/png;base64,");
-            sb.append(bitmapToBase64(picture));
-            sb.append("\"/>");
+            String picture64 = bitmapToBase64(picture);
+            if (picture64 != null) {
+                sb.append("<img ");
+                sb.append("style='float:left;margin:4px;'");
+                sb.append("src='data:image/png;base64,").append(picture64).append("'");
+                sb.append("/>");
+            }
         }
 
         if (text != null) {
             sb.append("<p>");
-            sb.append(escapeHtml(text, false));
+            sb.append(escapeHtml(text));
             sb.append("</p>");
         }
 
         if (url != null) {
-            sb.append("<iframe src=\"//www.facebook.com/plugins/like.php?href=");
-            sb.append(URLEncoder.encode(url));
-            sb.append("&amp;width&amp;layout=standard&amp;action=like&amp;show_faces=true&amp;share=true&amp;height=80&amp;");
+            sb.append("<iframe ");
+            sb.append("style='display:block;clear:both;border:none;overflow:hidden;'");
+
+            sb.append("src='//www.facebook.com/plugins/like.php");
+            sb.append("?href=").append(URLEncoder.encode(url));
+            sb.append("&layout=standard");
+            sb.append("&action=like");
+            sb.append("&show_faces=true");
+            sb.append("&share=true");
 
             if (appId != null) {
-                sb.append("appId=");
-                sb.append(appId);
+                sb.append("&appId=").append(appId);
             }
 
-            sb.append("\" scrolling=\"no\" frameborder=\"0\" style=\"border:none; overflow:hidden; height:80px;\" allowTransparency=\"true\"></iframe>");
+            sb.append("'");
+
+            sb.append("scrolling='no'");
+            sb.append("frameborder='0'");
+            sb.append("allowTransparency='true'");
+            sb.append("></iframe>");
         }
 
         sb.append("</body>");
@@ -128,49 +141,54 @@ public class FacebookLikeActivity extends Activity {
         return window;
     }
 
-    protected void removeWindow(WebView window) {
+    protected boolean removeWindow(WebView window) {
         if (mWindows.size() > 1) {
             mWindows.remove(window);
             mFrame.removeView(window);
+            return true;
         } else {
             window.stopLoading();
             window.loadDataWithBaseURL("about:blank", "<html></html>", "text/html", "utf-8", null);
+            return false;
         }
     }
 
     @Override
     public void onBackPressed() {
-        mFrame.playSoundEffect(SoundEffectConstants.CLICK);
+        boolean handled = false;
 
-        WebView window = mWindows.getLast();
-        if (window.canGoBack()) {
-            window.goBack();
-        } else if (mWindows.size() > 1) {
-            removeWindow(window);
+        WebView window = mWindows.peekLast();
+        if (window != null) {
+            if (window.canGoBack()) {
+                window.goBack();
+                handled = true;
+            } else {
+                handled = removeWindow(window);
+            }
+        }
+
+        if (handled) {
+            mFrame.playSoundEffect(SoundEffectConstants.CLICK);
         } else {
             super.onBackPressed();
         }
     }
 
-    public static String escapeHtml(String unsecure, boolean noSpaces) {
-        final String result;
-
+    public static String escapeHtml(String unsecure) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
-            result = Html.fromHtml(unsecure).toString();
+            return Html.fromHtml(unsecure).toString();
         } else {
-            result = Html.escapeHtml(unsecure);
+            return Html.escapeHtml(unsecure);
         }
-
-        if (noSpaces) {
-            return result.replaceAll("\\s+", "%20");
-        }
-
-        return result;
     }
 
     public static String bitmapToBase64(Bitmap picture) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        picture.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            picture.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
+        } catch (Throwable ex) {
+            return null;
+        }
     }
 }
