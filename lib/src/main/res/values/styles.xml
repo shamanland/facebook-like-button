@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="com_facebook_like"/>
+    <dimen name="com_facebook_like_height">32sp</dimen>
+    <dimen name="com_facebook_like_padding_left">8dp</dimen>
+    <dimen name="com_facebook_like_padding_right">8dp</dimen>
+    <dimen name="com_facebook_like_padding_top">0dp</dimen>
+    <dimen name="com_facebook_like_padding_bottom">0dp</dimen>
+    <dimen name="com_facebook_like_compound_drawable_padding">8dp</dimen>
+    <color name="com_facebook_like_text_color">#fff</color>
+    <dimen name="com_facebook_like_text_size">16sp</dimen>
+
+    <style name="com_facebook_like_style" parent="@android:style/Widget.Button">
+        <item name="android:id">@id/com_facebook_like</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/com_facebook_like_height</item>
+        <item name="android:text">@string/com_facebook_like</item>
+        <item name="android:textColor">@color/com_facebook_like_text_color</item>
+        <item name="android:textSize">@dimen/com_facebook_like_text_size</item>
+        <item name="android:drawablePadding">@dimen/com_facebook_like_compound_drawable_padding</item>
+        <item name="android:paddingLeft">@dimen/com_facebook_like_padding_left</item>
+        <item name="android:paddingTop">@dimen/com_facebook_like_padding_top</item>
+        <item name="android:paddingRight">@dimen/com_facebook_like_padding_right</item>
+        <item name="android:paddingBottom">@dimen/com_facebook_like_padding_bottom</item>
+        <item name="android:background">@drawable/com_facebook_button_blue</item>
+        <item name="android:drawableLeft">@drawable/com_facebook_inverse_icon</item>
+    </style>
+</resources>

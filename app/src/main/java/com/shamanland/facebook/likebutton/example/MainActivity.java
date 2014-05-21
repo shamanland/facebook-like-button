@@ -1,10 +1,12 @@
-package com.shamanland.facebook.likebutton;
+package com.shamanland.facebook.likebutton.example;
 
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+
+import com.shamanland.facebook.likebutton.FacebookLikeActivity;
 
 public class MainActivity extends ActionBarActivity {
     @Override
@@ -13,7 +15,7 @@ public class MainActivity extends ActionBarActivity {
 
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.facebook_like).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.com_facebook_like).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), FacebookLikeActivity.class);

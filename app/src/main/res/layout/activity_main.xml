@@ -11,20 +11,6 @@
             android:layout_height="wrap_content"
             />
 
-    <Button
-            android:id="@+id/facebook_like"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/com_facebook_like"
-            android:textColor="@color/com_facebook_loginview_text_color"
-            android:textSize="@dimen/com_facebook_loginview_text_size"
-            android:drawablePadding="@dimen/com_facebook_loginview_compound_drawable_padding"
-            android:paddingLeft="@dimen/com_facebook_loginview_padding_left"
-            android:paddingTop="@dimen/com_facebook_loginview_padding_top"
-            android:paddingRight="@dimen/com_facebook_loginview_padding_right"
-            android:paddingBottom="@dimen/com_facebook_loginview_padding_bottom"
-            android:background="@drawable/com_facebook_button_blue"
-            android:drawableLeft="@drawable/com_facebook_inverse_icon"
-            />
+    <Button style="@style/com_facebook_like_style"/>
 
 </LinearLayout>

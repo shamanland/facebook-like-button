@@ -10,22 +10,9 @@ android {
         versionCode 1
         versionName "1.0"
     }
-    buildTypes {
-        release {
-            runProguard false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
-        }
-    }
-}
-
-repositories {
-    maven {
-        url 'http://repo.shamanland.com'
-    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:19.0.1'
-    compile 'com.facebook:facebook-android-sdk:3.14.1'
+    compile project(':lib')
 }
