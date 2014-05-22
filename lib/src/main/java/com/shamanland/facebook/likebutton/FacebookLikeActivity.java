@@ -4,12 +4,12 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
 import android.text.Html;
 import android.util.Base64;
-import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
@@ -34,6 +34,7 @@ public class FacebookLikeActivity extends Activity {
     public static final String PAGE_PICTURE = "page.picture";
     public static final String APP_ID = "app.id";
     public static final String CONTENT_VIEW_ID = "content.view.id";
+    public static final String OPTIONS = "options";
 
     private static final View.OnTouchListener SKIP_TOUCH = new View.OnTouchListener() {
         @Override
@@ -177,10 +178,15 @@ public class FacebookLikeActivity extends Activity {
             return null;
         }
 
+        int windowWidth = getWindowWidth();
         String title = getIntent().getStringExtra(PAGE_TITLE);
         String text = getIntent().getStringExtra(PAGE_TEXT);
         Bitmap picture = getIntent().getParcelableExtra(PAGE_PICTURE);
         String appId = getIntent().getStringExtra(APP_ID);
+        FacebookLikeOptions options = getIntent().getParcelableExtra(OPTIONS);
+        if (options == null) {
+            options = new FacebookLikeOptions();
+        }
 
         StringBuilder sb = new StringBuilder();
         sb.append("<!DOCTYPE html>");
@@ -188,28 +194,28 @@ public class FacebookLikeActivity extends Activity {
         sb.append("<body>");
 
         if (title != null) {
-            sb.append("<h1>");
+            sb.append(options.titleOpen);
             sb.append(escapeHtml(title));
-            sb.append("</h1>");
+            sb.append(options.titleClose);
         }
 
         if (picture != null) {
-            String picture64 = bitmapToBase64(picture, getWindowWidth() / 4);
+            String picture64 = bitmapToBase64(picture, windowWidth / 4);
             if (picture64 != null) {
                 sb.append("<img ");
-                sb.append("style='float:left;margin:4px;'");
+                sb.append(options.pictureAttrs);
                 sb.append("src='data:image/png;base64,").append(picture64).append("'");
                 sb.append("/>");
             }
         }
 
         if (text != null) {
-            sb.append("<p>");
+            sb.append(options.textOpen);
             sb.append(escapeHtml(text));
-            sb.append("</p>");
+            sb.append(options.textClose);
         }
 
-        appendUrl(url, appId, sb);
+        appendUrl(url, appId, options, windowWidth, sb);
 
         sb.append("</body>");
         sb.append("</html>");
@@ -222,21 +228,21 @@ public class FacebookLikeActivity extends Activity {
     }
 
     @SuppressWarnings("deprecation")
-    private void appendUrl(String url, String appId, StringBuilder sb) {
+    private void appendUrl(String url, String appId, FacebookLikeOptions options, int windowWidth, StringBuilder sb) {
         sb.append("<iframe ");
         sb.append("style='");
         sb.append("display:block;clear:both;border:none;overflow:hidden;");
-        sb.append("width:").append(getWindowWidth()).append("px;");
+        sb.append("width:").append(windowWidth).append("px;");
         sb.append("'");
 
         sb.append("src='//www.facebook.com/plugins/like.php");
         sb.append("?href=").append(URLEncoder.encode(url));
-        sb.append("&layout=standard");
-        sb.append("&action=like");
-        sb.append("&show_faces=true");
-        sb.append("&share=true");
+        sb.append("&layout=").append(options.getLayoutString());
+        sb.append("&action=").append(options.getActionString());
+        sb.append("&show_faces=").append(options.showFaces);
+        sb.append("&share=").append(options.share);
 
-        if (appId != null) {
+        if (appId != null && appId.trim().length() > 0) {
             sb.append("&appId=").append(appId);
         }
 
@@ -363,9 +369,6 @@ public class FacebookLikeActivity extends Activity {
     }
 
     public int getWindowWidth() {
-        int m = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-        getWindow().getDecorView().measure(m, m);
-        int w = getWindow().getDecorView().getMeasuredWidth();
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, w, getResources().getDisplayMetrics());
+        return getWindowManager().getDefaultDisplay().getWidth() / 2;
     }
 }

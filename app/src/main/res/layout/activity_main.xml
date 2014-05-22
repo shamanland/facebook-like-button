@@ -21,4 +21,15 @@
             app:appId="@string/my_app_id"
             />
 
+    <com.shamanland.facebook.likebutton.FacebookLikeButton
+            style="@style/Widget.FacebookLikeButton"
+            android:text="@string/recommend"
+            app:pageUrl="http://blog.shamanland.com/"
+            app:pageTitle="Developer's notes"
+            app:pageText="This is blog about Android development."
+            app:pagePicture="@drawable/ic_launcher"
+            app:appId="@string/my_app_id"
+            app:optLayout="button_count"
+            app:optAction="recommend"
+            />
 </LinearLayout>

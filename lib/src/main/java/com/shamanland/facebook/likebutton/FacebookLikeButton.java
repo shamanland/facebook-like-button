@@ -16,6 +16,7 @@ public class FacebookLikeButton extends Button {
     private Bitmap mPagePicture;
     private String mAppId;
     private int mContentViewId;
+    private FacebookLikeOptions mOptions;
 
     public String getPageUrl() {
         return mPageUrl;
@@ -65,6 +66,14 @@ public class FacebookLikeButton extends Button {
         mContentViewId = contentViewId;
     }
 
+    public FacebookLikeOptions getOptions() {
+        return mOptions;
+    }
+
+    public void setOptions(FacebookLikeOptions options) {
+        mOptions = options;
+    }
+
     public FacebookLikeButton(Context context) {
         super(context);
         init(context, null, 0);
@@ -98,9 +107,25 @@ public class FacebookLikeButton extends Button {
 
             mAppId = a.getString(R.styleable.FacebookLikeButton_appId);
             mContentViewId = a.getResourceId(R.styleable.FacebookLikeButton_contentViewId, 0);
+
+            mOptions = new FacebookLikeOptions();
+            mOptions.titleOpen = getString(a, R.styleable.FacebookLikeButton_optTitleOpen, mOptions.titleOpen);
+            mOptions.titleClose = getString(a, R.styleable.FacebookLikeButton_optTitleClose, mOptions.titleClose);
+            mOptions.textOpen = getString(a, R.styleable.FacebookLikeButton_optTextOpen, mOptions.textOpen);
+            mOptions.textClose = getString(a, R.styleable.FacebookLikeButton_optTextClose, mOptions.textClose);
+            mOptions.pictureAttrs = getString(a, R.styleable.FacebookLikeButton_optPictureAttrs, mOptions.pictureAttrs);
+            mOptions.layout = FacebookLikeOptions.Layout.values()[a.getInt(R.styleable.FacebookLikeButton_optLayout, 0)];
+            mOptions.action = FacebookLikeOptions.Action.values()[a.getInt(R.styleable.FacebookLikeButton_optAction, 0)];
+            mOptions.showFaces = a.getBoolean(R.styleable.FacebookLikeButton_optShowFaces, mOptions.showFaces);
+            mOptions.share = a.getBoolean(R.styleable.FacebookLikeButton_optShare, mOptions.share);
         } finally {
             a.recycle();
         }
+    }
+
+    private String getString(TypedArray a, int index, String defValue) {
+        String read = a.getString(index);
+        return read != null ? read : defValue;
     }
 
     private void init(Context context, AttributeSet attrs, int defStyle) {
@@ -116,7 +141,7 @@ public class FacebookLikeButton extends Button {
         });
     }
 
-    protected void performLike() {
+    public void performLike() {
         Intent intent = new Intent(getContext(), FacebookLikeActivity.class);
         intent.putExtra(FacebookLikeActivity.PAGE_URL, mPageUrl);
         intent.putExtra(FacebookLikeActivity.PAGE_TITLE, mPageTitle);
@@ -124,6 +149,7 @@ public class FacebookLikeButton extends Button {
         intent.putExtra(FacebookLikeActivity.PAGE_PICTURE, mPagePicture);
         intent.putExtra(FacebookLikeActivity.APP_ID, mAppId);
         intent.putExtra(FacebookLikeActivity.CONTENT_VIEW_ID, mContentViewId);
+        intent.putExtra(FacebookLikeActivity.OPTIONS, mOptions);
         getContext().startActivity(intent);
     }
 }

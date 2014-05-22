@@ -7,5 +7,22 @@
         <attr name="pagePicture" format="reference"/>
         <attr name="appId" format="string|reference"/>
         <attr name="contentViewId" format="reference"/>
+        <attr name="optTitleOpen" format="string|reference"/>
+        <attr name="optTitleClose" format="string|reference"/>
+        <attr name="optTextOpen" format="string|reference"/>
+        <attr name="optTextClose" format="string|reference"/>
+        <attr name="optPictureAttrs" format="string|reference"/>
+        <attr name="optLayout" format="enum">
+            <enum name="standard" value="0"/>
+            <enum name="box_count" value="1"/>
+            <enum name="button_count" value="2"/>
+            <enum name="button" value="3"/>
+        </attr>
+        <attr name="optAction" format="enum">
+            <enum name="like" value="0"/>
+            <enum name="recommend" value="1"/>
+        </attr>
+        <attr name="optShowFaces" format="boolean|reference"/>
+        <attr name="optShare" format="boolean|reference"/>
     </declare-styleable>
 </resources>
