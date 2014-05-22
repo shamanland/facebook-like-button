@@ -194,7 +194,7 @@ public class FacebookLikeActivity extends Activity {
         }
 
         if (picture != null) {
-            String picture64 = bitmapToBase64(picture, getWindowWidth());
+            String picture64 = bitmapToBase64(picture, getWindowWidth() / 4);
             if (picture64 != null) {
                 sb.append("<img ");
                 sb.append("style='float:left;margin:4px;'");
@@ -213,7 +213,12 @@ public class FacebookLikeActivity extends Activity {
 
         sb.append("</body>");
         sb.append("</html>");
-        return sb.toString();
+
+        try {
+            return sb.toString();
+        } catch (OutOfMemoryError ex) {
+            return null;
+        }
     }
 
     @SuppressWarnings("deprecation")
