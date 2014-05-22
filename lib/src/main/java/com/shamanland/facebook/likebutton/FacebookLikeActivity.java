@@ -10,6 +10,7 @@ import android.os.Message;
 import android.text.Html;
 import android.util.Base64;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,13 @@ public class FacebookLikeActivity extends Activity {
     public static final String PAGE_PICTURE = "page.picture";
     public static final String APP_ID = "app.id";
     public static final String CONTENT_VIEW_ID = "content.view.id";
+
+    private static final View.OnTouchListener SKIP_TOUCH = new View.OnTouchListener() {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return true;
+        }
+    };
 
     private ViewGroup mContainer;
     private final LinkedList<WebView> mWindows;
@@ -74,12 +82,18 @@ public class FacebookLikeActivity extends Activity {
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
-                getProgressView(view).setVisibility(View.VISIBLE);
+                View progress = getProgressView(view);
+                if (progress != null) {
+                    progress.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
             public void onPageFinished(WebView view, String url) {
-                getProgressView(view).setVisibility(View.GONE);
+                View progress = getProgressView(view);
+                if (progress != null) {
+                    progress.setVisibility(View.GONE);
+                }
             }
 
             private View getProgressView(WebView view) {
@@ -90,7 +104,6 @@ public class FacebookLikeActivity extends Activity {
                     progress = (View) tag;
                 } else {
                     progress = createProgressBar(view);
-                    view.addView(progress);
                     view.setTag(progress);
                 }
 
@@ -111,7 +124,7 @@ public class FacebookLikeActivity extends Activity {
 
         String content = generateContent();
         if (content == null) {
-            Toast.makeText(getApplicationContext(), R.string.com_facebook_like_activity_error, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), R.string.com_facebook_like_activity_error, Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -181,7 +194,7 @@ public class FacebookLikeActivity extends Activity {
         }
 
         if (picture != null) {
-            String picture64 = bitmapToBase64(picture);
+            String picture64 = bitmapToBase64(picture, getWindowWidth());
             if (picture64 != null) {
                 sb.append("<img ");
                 sb.append("style='float:left;margin:4px;'");
@@ -256,25 +269,47 @@ public class FacebookLikeActivity extends Activity {
     @SuppressLint("SetJavaScriptEnabled")
     @SuppressWarnings("deprecation")
     protected WebView createWindow() {
+        FrameLayout wrapper = new FrameLayout(getContext());
         WebView window = new WebView(getContext());
         window.getSettings().setJavaScriptEnabled(true);
         window.getSettings().setSupportMultipleWindows(true);
         window.getSettings().setSavePassword(false);
         window.setWebChromeClient(mWebChromeClient);
         window.setWebViewClient(mWebViewClient);
+
+        wrapper.addView(window);
         mWindows.add(window);
-        mContainer.addView(window);
+        mContainer.addView(wrapper);
         return window;
     }
 
-    protected View createProgressBar(ViewGroup root) {
-        return getLayoutInflater().inflate(R.layout.com_facebook_like_activity_progress, root, false);
+    protected View createProgressBar(WebView window) {
+        ViewParent parent = window.getParent();
+        if (parent instanceof ViewGroup) {
+            ViewGroup wrapper = (ViewGroup) parent;
+
+            View result = getLayoutInflater().inflate(R.layout.com_facebook_like_activity_progress, wrapper, false);
+            if (result != null) {
+                wrapper.addView(result, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                result.setOnTouchListener(SKIP_TOUCH);
+                return result;
+            }
+        }
+
+        return null;
     }
 
     protected boolean removeWindow(WebView window) {
         if (mWindows.size() > 1) {
             mWindows.remove(window);
-            mContainer.removeView(window);
+
+            ViewParent parent = window.getParent();
+            if (parent instanceof View) {
+                mContainer.removeView((View) parent);
+            }
+
+            detachFromParent(window);
+            window.destroy();
             return true;
         } else {
             window.stopLoading();
@@ -291,8 +326,20 @@ public class FacebookLikeActivity extends Activity {
         }
     }
 
-    public static String bitmapToBase64(Bitmap picture) {
+    public static String bitmapToBase64(Bitmap picture, int size) {
         try {
+            int w = picture.getWidth();
+            int h = picture.getHeight();
+
+            int max = Math.max(w, h);
+            if (max > size) {
+                float factor = max / (float) size;
+                w = (int) (w / factor);
+                h = (int) (h / factor);
+
+                picture = Bitmap.createScaledBitmap(picture, w, h, false);
+            }
+
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             picture.compress(Bitmap.CompressFormat.PNG, 100, baos);
             return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);

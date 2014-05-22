@@ -10,43 +10,43 @@ import android.view.View;
 import android.widget.Button;
 
 public class FacebookLikeButton extends Button {
-    private String mUrl;
-    private String mTitle;
-    private String mText;
-    private Bitmap mPicture;
+    private String mPageUrl;
+    private String mPageTitle;
+    private String mPageText;
+    private Bitmap mPagePicture;
     private String mAppId;
     private int mContentViewId;
 
-    public String getUrl() {
-        return mUrl;
+    public String getPageUrl() {
+        return mPageUrl;
     }
 
-    public void setUrl(String url) {
-        mUrl = url;
+    public void setPageUrl(String pageUrl) {
+        mPageUrl = pageUrl;
     }
 
-    public String getTitle() {
-        return mTitle;
+    public String getPageTitle() {
+        return mPageTitle;
     }
 
-    public void setTitle(String title) {
-        mTitle = title;
+    public void setPageTitle(String pageTitle) {
+        mPageTitle = pageTitle;
     }
 
-    public String getText() {
-        return mText;
+    public String getPageText() {
+        return mPageText;
     }
 
-    public void setText(String text) {
-        mText = text;
+    public void setPageText(String pageText) {
+        mPageText = pageText;
     }
 
-    public Bitmap getPicture() {
-        return mPicture;
+    public Bitmap getPagePicture() {
+        return mPagePicture;
     }
 
-    public void setPicture(Bitmap picture) {
-        mPicture = picture;
+    public void setPagePicture(Bitmap pagePicture) {
+        mPagePicture = pagePicture;
     }
 
     public String getAppId() {
@@ -87,13 +87,13 @@ public class FacebookLikeButton extends Button {
         }
 
         try {
-            mUrl = a.getString(R.styleable.FacebookLikeButton_pageUrl);
-            mTitle = a.getString(R.styleable.FacebookLikeButton_pageTitle);
-            mText = a.getString(R.styleable.FacebookLikeButton_pageText);
+            mPageUrl = a.getString(R.styleable.FacebookLikeButton_pageUrl);
+            mPageTitle = a.getString(R.styleable.FacebookLikeButton_pageTitle);
+            mPageText = a.getString(R.styleable.FacebookLikeButton_pageText);
 
             int pictureId = a.getResourceId(R.styleable.FacebookLikeButton_pagePicture, 0);
             if (pictureId != 0) {
-                mPicture = BitmapFactory.decodeResource(getResources(), pictureId);
+                mPagePicture = BitmapFactory.decodeResource(getResources(), pictureId);
             }
 
             mAppId = a.getString(R.styleable.FacebookLikeButton_appId);
@@ -118,10 +118,10 @@ public class FacebookLikeButton extends Button {
 
     protected void performLike() {
         Intent intent = new Intent(getContext(), FacebookLikeActivity.class);
-        intent.putExtra(FacebookLikeActivity.PAGE_URL, mUrl);
-        intent.putExtra(FacebookLikeActivity.PAGE_TITLE, mTitle);
-        intent.putExtra(FacebookLikeActivity.PAGE_TEXT, mText);
-        intent.putExtra(FacebookLikeActivity.PAGE_PICTURE, mPicture);
+        intent.putExtra(FacebookLikeActivity.PAGE_URL, mPageUrl);
+        intent.putExtra(FacebookLikeActivity.PAGE_TITLE, mPageTitle);
+        intent.putExtra(FacebookLikeActivity.PAGE_TEXT, mPageText);
+        intent.putExtra(FacebookLikeActivity.PAGE_PICTURE, mPagePicture);
         intent.putExtra(FacebookLikeActivity.APP_ID, mAppId);
         intent.putExtra(FacebookLikeActivity.CONTENT_VIEW_ID, mContentViewId);
         getContext().startActivity(intent);
