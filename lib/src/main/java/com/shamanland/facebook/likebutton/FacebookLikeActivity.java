@@ -71,10 +71,34 @@ public class FacebookLikeActivity extends Activity {
                 view.loadUrl(url);
                 return true;
             }
+
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap favicon) {
+                getProgressView(view).setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                getProgressView(view).setVisibility(View.GONE);
+            }
+
+            private View getProgressView(WebView view) {
+                final View progress;
+
+                Object tag = view.getTag();
+                if (tag instanceof View) {
+                    progress = (View) tag;
+                } else {
+                    progress = createProgressBar(view);
+                    view.addView(progress);
+                    view.setTag(progress);
+                }
+
+                return progress;
+            }
         };
     }
 
-    @SuppressLint("AppCompatMethod")
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
@@ -230,6 +254,7 @@ public class FacebookLikeActivity extends Activity {
     }
 
     @SuppressLint("SetJavaScriptEnabled")
+    @SuppressWarnings("deprecation")
     protected WebView createWindow() {
         WebView window = new WebView(getContext());
         window.getSettings().setJavaScriptEnabled(true);
@@ -240,6 +265,10 @@ public class FacebookLikeActivity extends Activity {
         mWindows.add(window);
         mContainer.addView(window);
         return window;
+    }
+
+    protected View createProgressBar(ViewGroup root) {
+        return getLayoutInflater().inflate(R.layout.com_facebook_like_activity_progress, root, false);
     }
 
     protected boolean removeWindow(WebView window) {
