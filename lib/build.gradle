@@ -8,4 +8,11 @@ android {
         minSdkVersion 10
         targetSdkVersion 19
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
+
+apply from: 'https://raw.github.com/shamanland/gradle-mvn-push/master/gradle-mvn-push.gradle'
