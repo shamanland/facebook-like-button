@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FacebookLikeButton">
+        <attr name="pageUrl" format="string|reference"/>
+        <attr name="pageTitle" format="string|reference"/>
+        <attr name="pageText" format="string|reference"/>
+        <attr name="pagePicture" format="reference"/>
+        <attr name="appId" format="string|reference"/>
+        <attr name="contentViewId" format="reference"/>
+    </declare-styleable>
+</resources>

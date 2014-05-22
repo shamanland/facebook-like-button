@@ -1,5 +1,6 @@
 <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -11,6 +12,13 @@
             android:layout_height="wrap_content"
             />
 
-    <Button style="@style/com_facebook_like_style"/>
+    <com.shamanland.facebook.likebutton.FacebookLikeButton
+            style="@style/com_facebook_like_style"
+            app:pageUrl="http://blog.shamanland.com/"
+            app:pageTitle="Developer's notes"
+            app:pageText="This is blog about Android development."
+            app:pagePicture="@drawable/ic_launcher"
+            app:appId="@string/my_app_id"
+            />
 
 </LinearLayout>

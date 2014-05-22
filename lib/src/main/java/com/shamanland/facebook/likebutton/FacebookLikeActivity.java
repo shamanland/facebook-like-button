@@ -27,10 +27,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class FacebookLikeActivity extends Activity {
-    public static final String URL = "url";
-    public static final String TITLE = "title";
-    public static final String TEXT = "text";
-    public static final String PICTURE = "picture";
+    public static final String PAGE_URL = "page.url";
+    public static final String PAGE_TITLE = "page.title";
+    public static final String PAGE_TEXT = "page.text";
+    public static final String PAGE_PICTURE = "page.picture";
     public static final String APP_ID = "app.id";
     public static final String CONTENT_VIEW_ID = "content.view.id";
 
@@ -92,7 +92,7 @@ public class FacebookLikeActivity extends Activity {
             return;
         }
 
-        createWindow().loadDataWithBaseURL(getIntent().getStringExtra(URL), content, "text/html", "utf-8", null);
+        createWindow().loadDataWithBaseURL(getIntent().getStringExtra(PAGE_URL), content, "text/html", "utf-8", null);
     }
 
     @Override
@@ -129,7 +129,7 @@ public class FacebookLikeActivity extends Activity {
     }
 
     private String generateContent() {
-        String url = getIntent().getStringExtra(URL);
+        String url = getIntent().getStringExtra(PAGE_URL);
         if (url == null) {
             return null;
         }
@@ -140,9 +140,9 @@ public class FacebookLikeActivity extends Activity {
             return null;
         }
 
-        String title = getIntent().getStringExtra(TITLE);
-        String text = getIntent().getStringExtra(TEXT);
-        Bitmap picture = getIntent().getParcelableExtra(PICTURE);
+        String title = getIntent().getStringExtra(PAGE_TITLE);
+        String text = getIntent().getStringExtra(PAGE_TEXT);
+        Bitmap picture = getIntent().getParcelableExtra(PAGE_PICTURE);
         String appId = getIntent().getStringExtra(APP_ID);
 
         StringBuilder sb = new StringBuilder();
