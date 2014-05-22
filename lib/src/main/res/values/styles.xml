@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="com_facebook_like_height">32sp</dimen>
-    <dimen name="com_facebook_like_padding_left">8dp</dimen>
-    <dimen name="com_facebook_like_padding_top">0dp</dimen>
-    <dimen name="com_facebook_like_padding_right">8dp</dimen>
-    <dimen name="com_facebook_like_padding_bottom">0dp</dimen>
-    <dimen name="com_facebook_like_compound_drawable_padding">8dp</dimen>
+    <dimen name="com_facebook_like_height">30sp</dimen>
+    <dimen name="com_facebook_like_padding_left">6sp</dimen>
+    <dimen name="com_facebook_like_padding_top">0sp</dimen>
+    <dimen name="com_facebook_like_padding_right">6sp</dimen>
+    <dimen name="com_facebook_like_padding_bottom">0sp</dimen>
+    <dimen name="com_facebook_like_compound_drawable_padding">6sp</dimen>
     <color name="com_facebook_like_text_color">#fff</color>
     <dimen name="com_facebook_like_text_size">16sp</dimen>
     <dimen name="com_facebook_like_activity_progress_size">40dp</dimen>
@@ -17,6 +17,10 @@
         <item name="android:text">@string/like</item>
         <item name="android:textColor">@color/com_facebook_like_text_color</item>
         <item name="android:textSize">@dimen/com_facebook_like_text_size</item>
+        <item name="android:shadowRadius">2</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">-2</item>
+        <item name="android:shadowColor">@android:color/black</item>
         <item name="android:drawablePadding">@dimen/com_facebook_like_compound_drawable_padding</item>
         <item name="android:paddingLeft">@dimen/com_facebook_like_padding_left</item>
         <item name="android:paddingTop">@dimen/com_facebook_like_padding_top</item>
