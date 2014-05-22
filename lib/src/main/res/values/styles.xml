@@ -10,11 +10,11 @@
     <dimen name="com_facebook_like_text_size">16sp</dimen>
     <dimen name="com_facebook_like_activity_progress_size">40dp</dimen>
 
-    <style name="com_facebook_like_style" parent="@android:style/Widget.Button">
+    <style name="Widget.FacebookLikeButton" parent="@android:style/Widget.Button">
         <item name="android:id">@id/com_facebook_like</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/com_facebook_like_height</item>
-        <item name="android:text">@string/com_facebook_like</item>
+        <item name="android:text">@string/like</item>
         <item name="android:textColor">@color/com_facebook_like_text_color</item>
         <item name="android:textSize">@dimen/com_facebook_like_text_size</item>
         <item name="android:drawablePadding">@dimen/com_facebook_like_compound_drawable_padding</item>

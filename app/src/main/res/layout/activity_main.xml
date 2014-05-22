@@ -13,7 +13,7 @@
             />
 
     <com.shamanland.facebook.likebutton.FacebookLikeButton
-            style="@style/com_facebook_like_style"
+            style="@style/Widget.FacebookLikeButton"
             app:pageUrl="http://blog.shamanland.com/"
             app:pageTitle="Developer's notes"
             app:pageText="This is blog about Android development."

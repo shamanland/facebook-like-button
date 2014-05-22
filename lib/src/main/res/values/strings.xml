@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="com_facebook">Facebook</string>
-    <string name="com_facebook_like">Like</string>
+    <string name="facebook">Facebook</string>
+    <string name="like">Like</string>
     <string name="com_facebook_like_activity_error">Action \'like\' could not be done</string>
 </resources>

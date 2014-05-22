@@ -111,7 +111,7 @@ public class FacebookLikeActivity extends Activity {
 
         String content = generateContent();
         if (content == null) {
-            Toast.makeText(this, R.string.com_facebook_like_activity_error, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.com_facebook_like_activity_error, Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
