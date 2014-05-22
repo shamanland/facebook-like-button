@@ -9,11 +9,11 @@ import android.os.Bundle;
 import android.os.Message;
 import android.text.Html;
 import android.util.Base64;
+import android.util.TypedValue;
 import android.view.SoundEffectConstants;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -78,10 +78,12 @@ public class FacebookLikeActivity extends Activity {
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
-
-        requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
         setContentView(createRoot());
-        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.com_facebook_title);
+    }
+
+    @Override
+    protected void onPostCreate(Bundle state) {
+        super.onPostCreate(state);
 
         String content = generateContent();
         if (content == null) {
@@ -180,7 +182,10 @@ public class FacebookLikeActivity extends Activity {
     @SuppressWarnings("deprecation")
     private void appendUrl(String url, String appId, StringBuilder sb) {
         sb.append("<iframe ");
-        sb.append("style='display:block;clear:both;border:none;overflow:hidden;'");
+        sb.append("style='");
+        sb.append("display:block;clear:both;border:none;overflow:hidden;");
+        sb.append("width:").append(getWindowWidth()).append("px;");
+        sb.append("'");
 
         sb.append("src='//www.facebook.com/plugins/like.php");
         sb.append("?href=").append(URLEncoder.encode(url));
@@ -229,6 +234,7 @@ public class FacebookLikeActivity extends Activity {
         WebView window = new WebView(getContext());
         window.getSettings().setJavaScriptEnabled(true);
         window.getSettings().setSupportMultipleWindows(true);
+        window.getSettings().setSavePassword(false);
         window.setWebChromeClient(mWebChromeClient);
         window.setWebViewClient(mWebViewClient);
         mWindows.add(window);
@@ -273,5 +279,12 @@ public class FacebookLikeActivity extends Activity {
                 ((ViewGroup) parent).removeView(view);
             }
         }
+    }
+
+    public int getWindowWidth() {
+        int m = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
+        getWindow().getDecorView().measure(m, m);
+        int w = getWindow().getDecorView().getMeasuredWidth();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, w, getResources().getDisplayMetrics());
     }
 }

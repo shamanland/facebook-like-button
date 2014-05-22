@@ -2,13 +2,12 @@
 <resources>
     <dimen name="com_facebook_like_height">32sp</dimen>
     <dimen name="com_facebook_like_padding_left">8dp</dimen>
-    <dimen name="com_facebook_like_padding_right">8dp</dimen>
     <dimen name="com_facebook_like_padding_top">0dp</dimen>
+    <dimen name="com_facebook_like_padding_right">8dp</dimen>
     <dimen name="com_facebook_like_padding_bottom">0dp</dimen>
     <dimen name="com_facebook_like_compound_drawable_padding">8dp</dimen>
     <color name="com_facebook_like_text_color">#fff</color>
     <dimen name="com_facebook_like_text_size">16sp</dimen>
-    <dimen name="com_facebook_like_activity_padding">40dp</dimen>
 
     <style name="com_facebook_like_style" parent="@android:style/Widget.Button">
         <item name="android:id">@id/com_facebook_like</item>
