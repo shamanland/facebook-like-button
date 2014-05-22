@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
@@ -178,7 +177,6 @@ public class FacebookLikeActivity extends Activity {
             return null;
         }
 
-        int windowWidth = getWindowWidth();
         String title = getIntent().getStringExtra(PAGE_TITLE);
         String text = getIntent().getStringExtra(PAGE_TEXT);
         Bitmap picture = getIntent().getParcelableExtra(PAGE_PICTURE);
@@ -200,7 +198,7 @@ public class FacebookLikeActivity extends Activity {
         }
 
         if (picture != null) {
-            String picture64 = bitmapToBase64(picture, windowWidth / 4);
+            String picture64 = bitmapToBase64(picture, getPictureSize());
             if (picture64 != null) {
                 sb.append("<img ");
                 sb.append(options.pictureAttrs);
@@ -215,7 +213,7 @@ public class FacebookLikeActivity extends Activity {
             sb.append(options.textClose);
         }
 
-        appendUrl(url, appId, options, windowWidth, sb);
+        appendUrl(url, appId, options, sb);
 
         sb.append("</body>");
         sb.append("</html>");
@@ -228,11 +226,11 @@ public class FacebookLikeActivity extends Activity {
     }
 
     @SuppressWarnings("deprecation")
-    private void appendUrl(String url, String appId, FacebookLikeOptions options, int windowWidth, StringBuilder sb) {
+    private void appendUrl(String url, String appId, FacebookLikeOptions options, StringBuilder sb) {
         sb.append("<iframe ");
         sb.append("style='");
         sb.append("display:block;clear:both;border:none;overflow:hidden;");
-        sb.append("width:").append(windowWidth).append("px;");
+        sb.append("width:100%;");
         sb.append("'");
 
         sb.append("src='//www.facebook.com/plugins/like.php");
@@ -368,7 +366,11 @@ public class FacebookLikeActivity extends Activity {
         }
     }
 
-    public int getWindowWidth() {
-        return getWindowManager().getDefaultDisplay().getWidth() / 2;
+    @SuppressWarnings("deprecation")
+    public int getPictureSize() {
+        return Math.min(
+                getWindowManager().getDefaultDisplay().getWidth(),
+                getWindowManager().getDefaultDisplay().getHeight()
+        ) / 4;
     }
 }
