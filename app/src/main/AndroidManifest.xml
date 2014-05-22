@@ -21,6 +21,9 @@
 
         <activity
                 android:name="com.shamanland.facebook.likebutton.FacebookLikeActivity"
+                android:icon="@drawable/com_facebook_inverse_icon"
+                android:label="@string/com_facebook"
+                android:theme="@style/Theme.Facebook.Like"
                 />
     </application>
 

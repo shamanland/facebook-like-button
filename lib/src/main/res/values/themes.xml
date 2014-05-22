@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="WindowTitleBackground">
+        <item name="android:background">@color/com_facebook_blue</item>
+    </style>
+
+    <style name="Theme.Facebook.Like" parent="@android:style/Theme.Dialog">
+        <item name="android:minHeight">200dp</item>
+        <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
+    </style>
+</resources>

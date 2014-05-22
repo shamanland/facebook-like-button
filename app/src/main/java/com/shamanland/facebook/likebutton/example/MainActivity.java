@@ -19,11 +19,11 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), FacebookLikeActivity.class);
-                intent.putExtra(FacebookLikeActivity.APP_ID, "690014507725915");
                 intent.putExtra(FacebookLikeActivity.URL, "http://google.com");
                 intent.putExtra(FacebookLikeActivity.TITLE, "Google Search");
                 intent.putExtra(FacebookLikeActivity.TEXT, "This is the best search engine.");
                 intent.putExtra(FacebookLikeActivity.PICTURE, BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher));
+                intent.putExtra(FacebookLikeActivity.APP_ID, "690014507725915");
                 startActivity(intent);
             }
         });
