@@ -33,8 +33,92 @@ public final class FacebookLikeOptions implements Parcelable {
         return (action != null ? action : Action.LIKE).name().toLowerCase(Locale.US);
     }
 
+    public FacebookLikeOptions setTitleOpen(String titleOpen) {
+        this.titleOpen = titleOpen;
+        return this;
+    }
+
+    public FacebookLikeOptions setTitleClose(String titleClose) {
+        this.titleClose = titleClose;
+        return this;
+    }
+
+    public FacebookLikeOptions setTextOpen(String textOpen) {
+        this.textOpen = textOpen;
+        return this;
+    }
+
+    public FacebookLikeOptions setTextClose(String textClose) {
+        this.textClose = textClose;
+        return this;
+    }
+
+    public FacebookLikeOptions setPictureAttrs(String pictureAttrs) {
+        this.pictureAttrs = pictureAttrs;
+        return this;
+    }
+
+    public FacebookLikeOptions setLayout(Layout layout) {
+        this.layout = layout;
+        return this;
+    }
+
+    public FacebookLikeOptions setAction(Action action) {
+        this.action = action;
+        return this;
+    }
+
+    public FacebookLikeOptions setShowFaces(boolean showFaces) {
+        this.showFaces = showFaces;
+        return this;
+    }
+
+    public FacebookLikeOptions setShare(boolean share) {
+        this.share = share;
+        return this;
+    }
+
     public FacebookLikeOptions() {
         super();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || ((Object) this).getClass() != o.getClass()) return false;
+
+        FacebookLikeOptions that = (FacebookLikeOptions) o;
+
+        if (share != that.share) return false;
+        if (showFaces != that.showFaces) return false;
+        if (action != that.action) return false;
+        if (layout != that.layout) return false;
+        if (pictureAttrs != null ? !pictureAttrs.equals(that.pictureAttrs) : that.pictureAttrs != null)
+            return false;
+        if (textClose != null ? !textClose.equals(that.textClose) : that.textClose != null)
+            return false;
+        if (textOpen != null ? !textOpen.equals(that.textOpen) : that.textOpen != null)
+            return false;
+        if (titleClose != null ? !titleClose.equals(that.titleClose) : that.titleClose != null)
+            return false;
+        if (titleOpen != null ? !titleOpen.equals(that.titleOpen) : that.titleOpen != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = titleOpen != null ? titleOpen.hashCode() : 0;
+        result = 31 * result + (titleClose != null ? titleClose.hashCode() : 0);
+        result = 31 * result + (textOpen != null ? textOpen.hashCode() : 0);
+        result = 31 * result + (textClose != null ? textClose.hashCode() : 0);
+        result = 31 * result + (pictureAttrs != null ? pictureAttrs.hashCode() : 0);
+        result = 31 * result + (layout != null ? layout.hashCode() : 0);
+        result = 31 * result + (action != null ? action.hashCode() : 0);
+        result = 31 * result + (showFaces ? 1 : 0);
+        result = 31 * result + (share ? 1 : 0);
+        return result;
     }
 
     public int describeContents() {
