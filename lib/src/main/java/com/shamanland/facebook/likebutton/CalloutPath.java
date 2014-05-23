@@ -32,18 +32,18 @@ public class CalloutPath extends Path {
         float x3 = w / 2f - r;
         float x4 = w / 2f;
         float x5 = w / 2f + r;
-        float x6 = w - s - r - r * fr;
-        float x7 = w - s - r * fr;
-        float x8 = w - s;
+        float x6 = w - 1f - s - r - r * fr;
+        float x7 = w - 1f - s - r * fr;
+        float x8 = w - 1f - s;
         float y0 = s + 0f;
         float y1 = s + r * ft;
         float y2 = s + r + r * ft;
         float y3 = h / 2f - r;
         float y4 = h / 2f;
         float y5 = h / 2f + r;
-        float y6 = h - s - r - r * fb;
-        float y7 = h - s - r * fb;
-        float y8 = h - s;
+        float y6 = h - 1f - s - r - r * fb;
+        float y7 = h - 1f - s - r * fb;
+        float y8 = h - 1f - s;
 
         reset();
 

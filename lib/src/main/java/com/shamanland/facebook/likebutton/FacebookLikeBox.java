@@ -123,7 +123,7 @@ public class FacebookLikeBox extends Button {
             mStroke.getPaint().setColor(a.getColor(R.styleable.FacebookLikeBox_boxStrokeColor, r.getColor(R.color.com_facebook_like_box_text_color)));
             mStroke.getPaint().setAntiAlias(true);
             mStroke.getPaint().setStrokeWidth(a.getDimension(R.styleable.FacebookLikeBox_boxStrokeWidth, r.getDimension(R.dimen.com_facebook_like_box_stroke_width)));
-            mCornerRadius = a.getDimension(R.styleable.FacebookLikeBox_boxCornersRadius, r.getDimension(R.dimen.com_facebook_like_box_corners_radius));
+            mCornerRadius = a.getDimension(R.styleable.FacebookLikeBox_boxCornersRadius, r.getDimension(R.dimen.com_facebook_like_corners_radius));
             mCalloutMarker = a.getInt(R.styleable.FacebookLikeBox_calloutMarker, MARKER_NONE);
 
             initBackground();
