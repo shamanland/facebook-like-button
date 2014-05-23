@@ -30,7 +30,7 @@
                     app:pageTitle="Developer's notes"
                     app:pageText="This is blog about Android development."
                     app:pagePicture="@drawable/ic_launcher"
-                    app:boxId="@id/com_facebook_like_box"
+                    app:optLayout="button_count"
                     />
 
             <com.shamanland.facebook.likebutton.FacebookLikeBox
@@ -42,13 +42,12 @@
 
     <com.shamanland.facebook.likebutton.FacebookLikeButton
             style="@style/Widget.FacebookLikeButton"
+            android:id="@id/com_facebook_like_recommend"
             android:text="@string/recommend"
             app:pageUrl="http://blog.shamanland.com/"
             app:pageTitle="Developer's notes"
             app:pageText="This is blog about Android development."
             app:pagePicture="@drawable/ic_launcher"
-            app:appId="@string/my_app_id"
-            app:optLayout="button_count"
             app:optAction="recommend"
             />
 </LinearLayout>
