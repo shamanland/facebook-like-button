@@ -25,4 +25,21 @@
         <attr name="optShowFaces" format="boolean|reference"/>
         <attr name="optShare" format="boolean|reference"/>
     </declare-styleable>
+    <declare-styleable name="FacebookLikeBox">
+        <attr name="boxFillColor" format="color|reference"/>
+        <attr name="boxStrokeColor" format="color|reference"/>
+        <attr name="boxStrokeWidth" format="dimension|reference"/>
+        <attr name="boxCornersRadius" format="dimension|reference"/>
+        <attr name="calloutMarker" format="enum">
+            <enum name="none" value="0"/>
+            <enum name="left" value="1"/>
+            <enum name="top" value="2"/>
+            <enum name="right" value="3"/>
+            <enum name="bottom" value="4"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="FacebookLikePlugin">
+        <attr name="likeId" format="reference"/>
+        <attr name="boxId" format="reference"/>
+    </declare-styleable>
 </resources>

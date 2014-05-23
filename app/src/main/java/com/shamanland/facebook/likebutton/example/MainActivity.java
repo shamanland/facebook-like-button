@@ -10,8 +10,5 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.activity_main);
-
-        FacebookLikeBox box = (FacebookLikeBox) findViewById(R.id.com_facebook_like_box);
-        box.setUrl("http://google.com");
     }
 }

@@ -12,16 +12,18 @@
     <color name="com_facebook_like_box_text_color">#898f9c</color>
     <color name="com_facebook_like_box_background_color">#8fff</color>
     <dimen name="com_facebook_like_box_corners_radius">3sp</dimen>
-    <dimen name="com_facebook_like_box_stroke_width">1.5dp</dimen>
-    <dimen name="com_facebook_like_box_padding_left">32sp</dimen>
-    <dimen name="com_facebook_like_box_padding_top">0sp</dimen>
-    <dimen name="com_facebook_like_box_padding_right">20sp</dimen>
-    <dimen name="com_facebook_like_box_padding_bottom">0sp</dimen>
+    <dimen name="com_facebook_like_box_stroke_width">1dp</dimen>
+    <dimen name="com_facebook_like_box_padding_left">6sp</dimen>
+    <dimen name="com_facebook_like_box_padding_top">3sp</dimen>
+    <dimen name="com_facebook_like_box_padding_right">6sp</dimen>
+    <dimen name="com_facebook_like_box_padding_bottom">3sp</dimen>
 
     <style name="Widget.FacebookLikeButton" parent="@android:style/Widget.Button">
         <item name="android:id">@id/com_facebook_like</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/com_facebook_like_height</item>
+        <item name="android:minWidth">@dimen/com_facebook_like_height</item>
+        <item name="android:minHeight">1dp</item>
         <item name="android:text">@string/like</item>
         <item name="android:textColor">@color/com_facebook_like_text_color</item>
         <item name="android:textSize">@dimen/com_facebook_like_text_size</item>
@@ -43,6 +45,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">@dimen/com_facebook_like_height</item>
         <item name="android:minWidth">@dimen/com_facebook_like_height</item>
+        <item name="android:minHeight">1dp</item>
         <item name="android:text">@string/com_facebook_like_box_text_default</item>
         <item name="android:textColor">@color/com_facebook_like_box_text_color</item>
         <item name="android:textSize">@dimen/com_facebook_like_text_size</item>

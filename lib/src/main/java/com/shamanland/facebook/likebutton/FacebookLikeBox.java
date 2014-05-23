@@ -1,6 +1,8 @@
 package com.shamanland.facebook.likebutton;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
@@ -9,6 +11,7 @@ import android.graphics.drawable.shapes.PathShape;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
+import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
 import android.util.AttributeSet;
@@ -16,12 +19,20 @@ import android.widget.Button;
 
 import com.shamanland.facebook.likebutton.FacebookLinkStatProcessor.Result;
 
+import static com.shamanland.facebook.likebutton.CalloutPath.MARKER_BOTTOM;
+import static com.shamanland.facebook.likebutton.CalloutPath.MARKER_LEFT;
+import static com.shamanland.facebook.likebutton.CalloutPath.MARKER_NONE;
+import static com.shamanland.facebook.likebutton.CalloutPath.MARKER_RIGHT;
+import static com.shamanland.facebook.likebutton.CalloutPath.MARKER_TOP;
+import static com.shamanland.facebook.likebutton.CalloutPath.factor;
+
 public class FacebookLikeBox extends Button {
-    private static final HandlerThread THREAD;
+    private static final Looper BACKGROUND;
 
     static {
-        THREAD = new HandlerThread(FacebookLikeBox.class.getSimpleName(), Process.THREAD_PRIORITY_LOWEST);
-        THREAD.start();
+        HandlerThread thread = new HandlerThread(FacebookLikeBox.class.getSimpleName(), Process.THREAD_PRIORITY_LOWEST);
+        thread.start();
+        BACKGROUND = thread.getLooper();
     }
 
     private Handler mHandler;
@@ -33,13 +44,13 @@ public class FacebookLikeBox extends Button {
     private ShapeDrawable mFill;
     private ShapeDrawable mStroke;
     private float mCornerRadius;
-    private float mStrokeWidth;
+    private int mCalloutMarker;
 
     public void setProcessor(FacebookLinkStatProcessor processor) {
         mProcessor = processor;
     }
 
-    public void setUrl(String url) {
+    public void setPageUrl(String url) {
         String old = mUrl;
         mUrl = url;
 
@@ -59,23 +70,23 @@ public class FacebookLikeBox extends Button {
 
     public FacebookLikeBox(Context context) {
         super(context);
-        init();
+        init(null);
     }
 
     public FacebookLikeBox(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(attrs);
     }
 
     public FacebookLikeBox(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init();
+        init(attrs);
     }
 
-    private void init() {
+    private void init(AttributeSet attrs) {
         mProcessor = new FacebookLinkStatProcessor();
 
-        mHandler = new Handler(THREAD.getLooper(), new Handler.Callback() {
+        mHandler = new Handler(BACKGROUND, new Handler.Callback() {
             @Override
             public boolean handleMessage(Message msg) {
                 processUrl((String) msg.obj);
@@ -83,18 +94,50 @@ public class FacebookLikeBox extends Button {
             }
         });
 
-        mStrokeWidth = getResources().getDimension(R.dimen.com_facebook_like_box_stroke_width);
-        mCornerRadius = getResources().getDimension(R.dimen.com_facebook_like_box_corners_radius);
+        if (attrs == null) {
+            return;
+        }
 
-        mPath = new CalloutPath();
-        mFill = new ShapeDrawable();
-        mFill.getPaint().setStyle(Paint.Style.FILL);
-        mFill.getPaint().setColor(getResources().getColor(R.color.com_facebook_like_box_background_color));
-        mStroke = new ShapeDrawable();
-        mStroke.getPaint().setStyle(Paint.Style.STROKE);
-        mStroke.getPaint().setColor(getResources().getColor(R.color.com_facebook_like_box_text_color));
-        mStroke.getPaint().setAntiAlias(true);
-        mStroke.getPaint().setStrokeWidth(mStrokeWidth);
+        Context c = getContext();
+        if (c == null) {
+            return;
+        }
+
+        TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.FacebookLikeBox);
+        if (a == null) {
+            return;
+        }
+
+        Resources r = getResources();
+        if (r == null) {
+            return;
+        }
+
+        try {
+            mPath = new CalloutPath();
+            mFill = new ShapeDrawable();
+            mFill.getPaint().setStyle(Paint.Style.FILL);
+            mFill.getPaint().setColor(a.getColor(R.styleable.FacebookLikeBox_boxFillColor, r.getColor(R.color.com_facebook_like_box_background_color)));
+            mStroke = new ShapeDrawable();
+            mStroke.getPaint().setStyle(Paint.Style.STROKE);
+            mStroke.getPaint().setColor(a.getColor(R.styleable.FacebookLikeBox_boxStrokeColor, r.getColor(R.color.com_facebook_like_box_text_color)));
+            mStroke.getPaint().setAntiAlias(true);
+            mStroke.getPaint().setStrokeWidth(a.getDimension(R.styleable.FacebookLikeBox_boxStrokeWidth, r.getDimension(R.dimen.com_facebook_like_box_stroke_width)));
+            mCornerRadius = a.getDimension(R.styleable.FacebookLikeBox_boxCornersRadius, r.getDimension(R.dimen.com_facebook_like_box_corners_radius));
+            mCalloutMarker = a.getInt(R.styleable.FacebookLikeBox_calloutMarker, MARKER_NONE);
+
+            initBackground();
+        } finally {
+            a.recycle();
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    private void initBackground() {
+        int pl = (int) (getPaddingLeft() + factor(mCalloutMarker, MARKER_LEFT) * mCornerRadius);
+        int pt = (int) (getPaddingTop() + factor(mCalloutMarker, MARKER_TOP) * mCornerRadius);
+        int pr = (int) (getPaddingRight() + factor(mCalloutMarker, MARKER_RIGHT) * mCornerRadius);
+        int pb = (int) (getPaddingBottom() + factor(mCalloutMarker, MARKER_BOTTOM) * mCornerRadius);
 
         Drawable drawable = new LayerDrawable(new Drawable[]{mFill, mStroke});
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
@@ -102,6 +145,8 @@ public class FacebookLikeBox extends Button {
         } else {
             setBackground(drawable);
         }
+
+        setPadding(pl, pt, pr, pb);
     }
 
     @Override
@@ -118,7 +163,7 @@ public class FacebookLikeBox extends Button {
 
     @Override
     protected void onSizeChanged(int w, int h, int oldW, int oldH) {
-        mPath.build(CalloutPath.MARKER_LEFT, w, h, mStrokeWidth, mCornerRadius);
+        mPath.build(mCalloutMarker, w, h, mStroke.getPaint().getStrokeWidth(), mCornerRadius);
         PathShape shape = new PathShape(mPath, w, h);
         mFill.setShape(shape);
         mStroke.setShape(shape);
@@ -131,8 +176,10 @@ public class FacebookLikeBox extends Button {
 
         if (newValue != null) {
             Message msg = Message.obtain();
-            msg.obj = newValue;
-            mHandler.sendMessage(msg);
+            if (msg != null) {
+                msg.obj = newValue;
+                mHandler.sendMessage(msg);
+            }
         }
     }
 

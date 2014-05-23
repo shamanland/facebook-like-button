@@ -21,10 +21,10 @@ public class CalloutPath extends Path {
      * @param r corners radius
      */
     public void build(int m, float w, float h, float s, float r) {
-        float fl = factor(m, MARKER_LEFT);
-        float ft = factor(m, MARKER_TOP);
-        float fr = factor(m, MARKER_RIGHT);
-        float fb = factor(m, MARKER_BOTTOM);
+        int fl = factor(m, MARKER_LEFT);
+        int ft = factor(m, MARKER_TOP);
+        int fr = factor(m, MARKER_RIGHT);
+        int fb = factor(m, MARKER_BOTTOM);
 
         float x0 = s + 0f;
         float x1 = s + r * fl;
@@ -52,7 +52,7 @@ public class CalloutPath extends Path {
         oval.set(x2 - r, y2 - r, x2 + r, y2 + r);
         arcTo(oval, 180f, 90f);
 
-        if ((m & MARKER_TOP) != 0) {
+        if (ft != 0) {
             lineTo(x3, y1);
             lineTo(x4, y0);
             lineTo(x5, y1);
@@ -63,7 +63,7 @@ public class CalloutPath extends Path {
         oval.set(x6 - r, y2 - r, x6 + r, y2 + r);
         arcTo(oval, 270f, 90f);
 
-        if ((m & MARKER_RIGHT) != 0) {
+        if (fr != 0) {
             lineTo(x7, y3);
             lineTo(x8, y4);
             lineTo(x7, y5);
@@ -74,7 +74,7 @@ public class CalloutPath extends Path {
         oval.set(x6 - r, y6 - r, x6 + r, y6 + r);
         arcTo(oval, 0f, 90f);
 
-        if ((m & MARKER_BOTTOM) != 0) {
+        if (fb != 0) {
             lineTo(x5, y7);
             lineTo(x4, y8);
             lineTo(x3, y7);
@@ -85,7 +85,7 @@ public class CalloutPath extends Path {
         oval.set(x2 - r, y6 - r, x2 + r, y6 + r);
         arcTo(oval, 90f, 90f);
 
-        if ((m & MARKER_LEFT) != 0) {
+        if (fl != 0) {
             lineTo(x1, y5);
             lineTo(x0, y4);
             lineTo(x1, y3);
@@ -94,7 +94,7 @@ public class CalloutPath extends Path {
         close();
     }
 
-    private static float factor(int marker, int mask) {
-        return (marker & mask) != 0 ? 1f : 0f;
+    public static int factor(int marker, int mask) {
+        return (marker & mask) != 0 ? 1 : 0;
     }
 }

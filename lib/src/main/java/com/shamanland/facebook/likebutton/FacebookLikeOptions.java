@@ -7,8 +7,7 @@ import java.util.Locale;
 
 public final class FacebookLikeOptions implements Parcelable {
     public enum Layout {
-        STANDARD, BOX_COUNT, BUTTON_COUNT, BUTTON;
-
+        STANDARD, BOX_COUNT, BUTTON_COUNT, BUTTON
     }
 
     public enum Action {

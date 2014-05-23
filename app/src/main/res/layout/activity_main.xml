@@ -18,18 +18,26 @@
             android:orientation="horizontal"
             >
 
-        <com.shamanland.facebook.likebutton.FacebookLikeButton
-                style="@style/Widget.FacebookLikeButton"
-                app:pageUrl="http://blog.shamanland.com/"
-                app:pageTitle="Developer's notes"
-                app:pageText="This is blog about Android development."
-                app:pagePicture="@drawable/ic_launcher"
-                app:appId="@string/my_app_id"
-                />
+        <com.shamanland.facebook.likebutton.FacebookLikePlugin
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
 
-        <com.shamanland.facebook.likebutton.FacebookLikeBox
-                style="@style/Widget.FacebookLikeBox"
-                />
+            <com.shamanland.facebook.likebutton.FacebookLikeButton
+                    style="@style/Widget.FacebookLikeButton"
+                    app:pageUrl="http://blog.shamanland.com/"
+                    app:pageTitle="Developer's notes"
+                    app:pageText="This is blog about Android development."
+                    app:pagePicture="@drawable/ic_launcher"
+                    app:boxId="@id/com_facebook_like_box"
+                    />
+
+            <com.shamanland.facebook.likebutton.FacebookLikeBox
+                    style="@style/Widget.FacebookLikeBox"
+                    app:calloutMarker="left"
+                    />
+        </com.shamanland.facebook.likebutton.FacebookLikePlugin>
     </LinearLayout>
 
     <com.shamanland.facebook.likebutton.FacebookLikeButton
@@ -42,13 +50,5 @@
             app:appId="@string/my_app_id"
             app:optLayout="button_count"
             app:optAction="recommend"
-            />
-
-    <com.shamanland.facebook.likebutton.FacebookLikeBox
-            style="@style/Widget.FacebookLikeBox"
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:text="@string/facebook"
-            android:paddingLeft="0dp"
             />
 </LinearLayout>

@@ -10,6 +10,10 @@ import android.view.View;
 import android.widget.Button;
 
 public class FacebookLikeButton extends Button {
+    public interface OnPageUrlChangeListener {
+        void onPageUrlChanged(String newValue);
+    }
+
     private String mPageUrl;
     private String mPageTitle;
     private String mPageText;
@@ -18,12 +22,18 @@ public class FacebookLikeButton extends Button {
     private int mContentViewId;
     private FacebookLikeOptions mOptions;
 
+    private OnPageUrlChangeListener mOnPageUrlChangeListener;
+
     public String getPageUrl() {
         return mPageUrl;
     }
 
     public void setPageUrl(String pageUrl) {
         mPageUrl = pageUrl;
+
+        if (mOnPageUrlChangeListener != null) {
+            mOnPageUrlChangeListener.onPageUrlChanged(mPageUrl);
+        }
     }
 
     public String getPageTitle() {
@@ -74,23 +84,40 @@ public class FacebookLikeButton extends Button {
         mOptions = options;
     }
 
+    public void setOnPageUrlChangeListener(OnPageUrlChangeListener listener) {
+        mOnPageUrlChangeListener = listener;
+
+        if (mOnPageUrlChangeListener != null) {
+            mOnPageUrlChangeListener.onPageUrlChanged(mPageUrl);
+        }
+    }
+
     public FacebookLikeButton(Context context) {
         super(context);
-        init(context, null, 0);
+        init(null);
     }
 
     public FacebookLikeButton(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs, 0);
+        init(attrs);
     }
 
     public FacebookLikeButton(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init(context, attrs, defStyle);
+        init(attrs);
     }
 
-    private void initAttrs(Context context, AttributeSet attrs) {
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FacebookLikeButton, 0, 0);
+    private void initAttrs(AttributeSet attrs) {
+        if (attrs == null) {
+            return;
+        }
+
+        Context c = getContext();
+        if (c == null) {
+            return;
+        }
+
+        TypedArray a = c.obtainStyledAttributes(attrs, R.styleable.FacebookLikeButton, 0, 0);
         if (a == null) {
             return;
         }
@@ -128,9 +155,9 @@ public class FacebookLikeButton extends Button {
         return read != null ? read : defValue;
     }
 
-    private void init(Context context, AttributeSet attrs, int defStyle) {
+    private void init(AttributeSet attrs) {
         if (attrs != null) {
-            initAttrs(context, attrs);
+            initAttrs(attrs);
         }
 
         setOnClickListener(new OnClickListener() {
@@ -142,7 +169,12 @@ public class FacebookLikeButton extends Button {
     }
 
     public void performLike() {
-        Intent intent = new Intent(getContext(), FacebookLikeActivity.class);
+        Context c = getContext();
+        if (c == null) {
+            return;
+        }
+
+        Intent intent = new Intent(c, FacebookLikeActivity.class);
         intent.putExtra(FacebookLikeActivity.PAGE_URL, mPageUrl);
         intent.putExtra(FacebookLikeActivity.PAGE_TITLE, mPageTitle);
         intent.putExtra(FacebookLikeActivity.PAGE_TEXT, mPageText);
@@ -150,6 +182,6 @@ public class FacebookLikeButton extends Button {
         intent.putExtra(FacebookLikeActivity.APP_ID, mAppId);
         intent.putExtra(FacebookLikeActivity.CONTENT_VIEW_ID, mContentViewId);
         intent.putExtra(FacebookLikeActivity.OPTIONS, mOptions);
-        getContext().startActivity(intent);
+        c.startActivity(intent);
     }
 }
