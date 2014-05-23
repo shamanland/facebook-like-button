@@ -28,10 +28,7 @@
                 />
 
         <com.shamanland.facebook.likebutton.FacebookLikeBox
-                android:id="@id/com_facebook_like_box"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
+                style="@style/Widget.FacebookLikeBox"
                 />
     </LinearLayout>
 

@@ -4,5 +4,6 @@
     <string name="like">Like</string>
     <string name="share">Share</string>
     <string name="recommend">Recommend</string>
+    <string name="com_facebook_like_box_text_default">0</string>
     <string name="com_facebook_like_activity_error">Action \'like\' could not be done</string>
 </resources>
