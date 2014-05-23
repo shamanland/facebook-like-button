@@ -43,4 +43,12 @@
             app:optLayout="button_count"
             app:optAction="recommend"
             />
+
+    <com.shamanland.facebook.likebutton.FacebookLikeBox
+            style="@style/Widget.FacebookLikeBox"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:text="@string/facebook"
+            android:paddingLeft="0dp"
+            />
 </LinearLayout>

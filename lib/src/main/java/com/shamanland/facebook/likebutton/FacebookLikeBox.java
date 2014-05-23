@@ -1,17 +1,22 @@
 package com.shamanland.facebook.likebutton;
 
 import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.LayerDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.PathShape;
 import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
 import android.os.Process;
 import android.util.AttributeSet;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.shamanland.facebook.likebutton.FacebookLinkStatProcessor.Result;
 
-public class FacebookLikeBox extends TextView {
+public class FacebookLikeBox extends Button {
     private static final HandlerThread THREAD;
 
     static {
@@ -23,6 +28,12 @@ public class FacebookLikeBox extends TextView {
     private FacebookLinkStatProcessor mProcessor;
     private String mUrl;
     private boolean mAttachedToWindow;
+
+    private CalloutPath mPath;
+    private ShapeDrawable mFill;
+    private ShapeDrawable mStroke;
+    private float mCornerRadius;
+    private float mStrokeWidth;
 
     public void setProcessor(FacebookLinkStatProcessor processor) {
         mProcessor = processor;
@@ -71,6 +82,26 @@ public class FacebookLikeBox extends TextView {
                 return true;
             }
         });
+
+        mStrokeWidth = getResources().getDimension(R.dimen.com_facebook_like_box_stroke_width);
+        mCornerRadius = getResources().getDimension(R.dimen.com_facebook_like_box_corners_radius);
+
+        mPath = new CalloutPath();
+        mFill = new ShapeDrawable();
+        mFill.getPaint().setStyle(Paint.Style.FILL);
+        mFill.getPaint().setColor(getResources().getColor(R.color.com_facebook_like_box_background_color));
+        mStroke = new ShapeDrawable();
+        mStroke.getPaint().setStyle(Paint.Style.STROKE);
+        mStroke.getPaint().setColor(getResources().getColor(R.color.com_facebook_like_box_text_color));
+        mStroke.getPaint().setAntiAlias(true);
+        mStroke.getPaint().setStrokeWidth(mStrokeWidth);
+
+        Drawable drawable = new LayerDrawable(new Drawable[]{mFill, mStroke});
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN) {
+            setBackgroundDrawable(drawable);
+        } else {
+            setBackground(drawable);
+        }
     }
 
     @Override
@@ -83,6 +114,14 @@ public class FacebookLikeBox extends TextView {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         mAttachedToWindow = false;
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldW, int oldH) {
+        mPath.build(CalloutPath.MARKER_LEFT, w, h, mStrokeWidth, mCornerRadius);
+        PathShape shape = new PathShape(mPath, w, h);
+        mFill.setShape(shape);
+        mStroke.setShape(shape);
     }
 
     protected void onUrlChanged(String oldValue, String newValue) {

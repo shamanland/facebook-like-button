@@ -11,8 +11,12 @@
     <dimen name="com_facebook_like_activity_progress_size">40dp</dimen>
     <color name="com_facebook_like_box_text_color">#898f9c</color>
     <color name="com_facebook_like_box_background_color">#8fff</color>
-    <dimen name="com_facebook_like_box_corners_radius">2dp</dimen>
-    <dimen name="com_facebook_like_box_stroke_width">2px</dimen>
+    <dimen name="com_facebook_like_box_corners_radius">3sp</dimen>
+    <dimen name="com_facebook_like_box_stroke_width">1.5dp</dimen>
+    <dimen name="com_facebook_like_box_padding_left">32sp</dimen>
+    <dimen name="com_facebook_like_box_padding_top">0sp</dimen>
+    <dimen name="com_facebook_like_box_padding_right">20sp</dimen>
+    <dimen name="com_facebook_like_box_padding_bottom">0sp</dimen>
 
     <style name="Widget.FacebookLikeButton" parent="@android:style/Widget.Button">
         <item name="android:id">@id/com_facebook_like</item>
@@ -42,6 +46,9 @@
         <item name="android:text">@string/com_facebook_like_box_text_default</item>
         <item name="android:textColor">@color/com_facebook_like_box_text_color</item>
         <item name="android:textSize">@dimen/com_facebook_like_text_size</item>
-        <item name="android:background">@drawable/com_facebook_like_box</item>
+        <item name="android:paddingLeft">@dimen/com_facebook_like_box_padding_left</item>
+        <item name="android:paddingTop">@dimen/com_facebook_like_box_padding_top</item>
+        <item name="android:paddingRight">@dimen/com_facebook_like_box_padding_right</item>
+        <item name="android:paddingBottom">@dimen/com_facebook_like_box_padding_bottom</item>
     </style>
 </resources>
