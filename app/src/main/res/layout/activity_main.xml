@@ -1,27 +1,30 @@
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         >
 
-    <TextView
-            android:text="@string/hello_world"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-
     <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/gap"
             >
+
+        <TextView
+                android:text="@string/hello_world"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/gap"
+                />
 
         <com.shamanland.facebook.likebutton.FacebookLikePlugin
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/gap"
                 >
 
             <com.shamanland.facebook.likebutton.FacebookLikeButton
@@ -30,7 +33,6 @@
                     app:pageTitle="Developer's notes"
                     app:pageText="This is blog about Android development."
                     app:pagePicture="@drawable/ic_launcher"
-                    app:optLayout="button_count"
                     />
 
             <com.shamanland.facebook.likebutton.FacebookLikeBox
@@ -38,16 +40,101 @@
                     app:calloutMarker="left"
                     />
         </com.shamanland.facebook.likebutton.FacebookLikePlugin>
-    </LinearLayout>
 
-    <com.shamanland.facebook.likebutton.FacebookLikeButton
-            style="@style/Widget.FacebookLikeButton"
-            android:id="@id/com_facebook_like_recommend"
-            android:text="@string/recommend"
-            app:pageUrl="http://blog.shamanland.com/"
-            app:pageTitle="Developer's notes"
-            app:pageText="This is blog about Android development."
-            app:pagePicture="@drawable/ic_launcher"
-            app:optAction="recommend"
-            />
-</LinearLayout>
+        <com.shamanland.facebook.likebutton.FacebookLikePlugin
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/gap"
+                app:likeId="@+id/like1"
+                app:boxId="@+id/box1"
+                >
+
+            <com.shamanland.facebook.likebutton.FacebookLikeBox
+                    style="@style/Widget.FacebookLikeBox"
+                    android:id="@+id/box1"
+                    app:calloutMarker="right"
+                    />
+
+            <com.shamanland.facebook.likebutton.FacebookLikeButton
+                    style="@style/Widget.FacebookLikeButton"
+                    android:id="@+id/like1"
+                    app:pageUrl="http://blog.shamanland.com/"
+                    app:pageTitle="Developer's notes"
+                    app:pageText="This is blog about Android development."
+                    app:pagePicture="@drawable/ic_launcher"
+                    />
+        </com.shamanland.facebook.likebutton.FacebookLikePlugin>
+
+        <com.shamanland.facebook.likebutton.FacebookLikePlugin
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/gap"
+                app:likeId="@+id/share2"
+                app:boxId="@+id/box2"
+                >
+
+            <com.shamanland.facebook.likebutton.FacebookLikeBox
+                    style="@style/Widget.FacebookLikeBox"
+                    android:id="@+id/box2"
+                    android:layout_width="match_parent"
+                    app:calloutMarker="bottom"
+                    />
+
+            <com.shamanland.facebook.likebutton.FacebookLikeButton
+                    style="@style/Widget.FacebookLikeButton"
+                    android:id="@+id/share2"
+                    android:layout_width="match_parent"
+                    android:text="@string/share"
+                    app:pageUrl="http://blog.shamanland.com/"
+                    app:pageTitle="Developer's notes"
+                    app:pageText="This is blog about Android development."
+                    app:pagePicture="@drawable/ic_launcher"
+                    app:optLayout="box_count"
+                    />
+        </com.shamanland.facebook.likebutton.FacebookLikePlugin>
+
+        <com.shamanland.facebook.likebutton.FacebookLikePlugin
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/gap"
+                app:likeId="@+id/share3"
+                app:boxId="@+id/box3"
+                >
+
+            <com.shamanland.facebook.likebutton.FacebookLikeButton
+                    style="@style/Widget.FacebookLikeButton"
+                    android:id="@+id/share3"
+                    android:layout_width="match_parent"
+                    android:text="@string/share"
+                    app:pageUrl="http://blog.shamanland.com/"
+                    app:pageTitle="Developer's notes"
+                    app:pageText="This is blog about Android development."
+                    app:pagePicture="@drawable/ic_launcher"
+                    app:optLayout="box_count"
+                    />
+
+            <com.shamanland.facebook.likebutton.FacebookLikeBox
+                    style="@style/Widget.FacebookLikeBox"
+                    android:id="@+id/box3"
+                    android:layout_width="match_parent"
+                    app:calloutMarker="top"
+                    />
+        </com.shamanland.facebook.likebutton.FacebookLikePlugin>
+
+        <com.shamanland.facebook.likebutton.FacebookLikeButton
+                style="@style/Widget.FacebookLikeButton"
+                android:id="@id/com_facebook_like_recommend"
+                android:text="@string/recommend"
+                android:layout_marginBottom="@dimen/gap"
+                app:pageUrl="http://blog.shamanland.com/"
+                app:pageTitle="Developer's notes"
+                app:pageText="This is blog about Android development."
+                app:pagePicture="@drawable/ic_launcher"
+                app:optAction="recommend"
+                app:optLayout="button_count"
+                />
+    </LinearLayout>
+</ScrollView>

@@ -5,7 +5,6 @@
         android:layout_height="match_parent"
         android:background="#8000"
         >
-
     <ProgressBar
             android:layout_width="@dimen/com_facebook_like_activity_progress_size"
             android:layout_height="@dimen/com_facebook_like_activity_progress_size"
