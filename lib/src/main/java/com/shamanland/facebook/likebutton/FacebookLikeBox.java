@@ -170,6 +170,8 @@ public class FacebookLikeBox extends Button {
     }
 
     protected void onUrlChanged(String oldValue, String newValue) {
+        setText(R.string.com_facebook_like_box_text_default);
+
         if (oldValue != null) {
             mHandler.removeMessages(0, oldValue);
         }
