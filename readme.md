@@ -1,11 +1,16 @@
 Facebook Like Button
 ====
 
-This is **custom implementation** of [Facebook 'Like' social plugin][8] for Android.
+Implementation of [Facebook 'Like' social plugin][8] for Android.
 
-There is **no official implementation** in [Facebook Android SDK][12].
+Official [Facebook SDK][12] does not provide such component for Android.
 
 This library uses ``WebView`` to display ``<iframe>`` based plugin.
+
+Project page
+----
+
+http://blog.shamanland.com/p/facebook-like-button.html
 
 Gradle dependency
 ----
@@ -22,7 +27,7 @@ dependencies {
 }
 ```
 
-Examples
+Screenshots
 ----
 
 Various layout available for any of your purposes:
@@ -51,6 +56,17 @@ You can set up any of Facebook options:
 
 How to use
 ----
+
+1. Declare FacebookLikeActivity in your AndroidManifest.xml:
+```
+<activity
+    android:name="com.shamanland.facebook.likebutton.FacebookLikeActivity"
+    android:label="@string/facebook"
+    android:theme="@style/Theme.Facebook.Like"
+    />
+```
+
+2. Insert one of possible buttons in your layout:
 
 Single 'Like' button: ![9]
 ```
