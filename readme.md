@@ -18,12 +18,12 @@ Gradle dependency
 ```
 repositories {
     maven {
-        url 'http://repo.shamanland.com'
+        url 'https://oss.sonatype.org/content/groups/public'
     }
 }
 
 dependencies {
-    compile 'com.shamanland:facebook-like-button:0.1.5'
+    compile 'com.shamanland:facebook-like-button:0.1.6-SNAPSHOT'
 }
 ```
 
@@ -186,6 +186,23 @@ values: ``none``, ``left``, ``top``, ``right``, ``bottom``, ``all``
 ``likeId`` - id - *recommended* - id of child ``FacebookLikeButton``, default value if ``R.id.com_facebook_like``
 
 ``boxId`` - id - *recommended* - id of child ``FacebookLikeBox``, default value if ``R.id.com_facebook_box``
+
+License
+--------
+
+    Copyright 2014 ShamanLand.Com
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
 
 [1]: https://drive.google.com/uc?id=0Bwh0SNLPmjQBUUFTeXJBS3N2SGc
 [2]: https://drive.google.com/uc?id=0Bwh0SNLPmjQBbDBKSnNUUnowdUE
