@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.FacebookLikeButton" parent="Widget.FacebookLikeButtonBase">
+        <item name="android:shadowRadius">2</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">-2</item>
+    </style>
+</resources>
