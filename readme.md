@@ -15,17 +15,27 @@ http://blog.shamanland.com/p/facebook-like-button.html
 Gradle dependency
 ----
 
-```
-repositories {
-    maven {
-        url 'https://oss.sonatype.org/content/groups/public'
-    }
-}
+Release dependency:
 
-dependencies {
-    compile 'com.shamanland:facebook-like-button:0.1.6-SNAPSHOT'
-}
-```
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        compile 'com.shamanland:facebook-like-button:0.1.6'
+    }
+
+Snapshot dependency:
+
+    repositories {
+        maven {
+            url 'https://oss.sonatype.org/content/groups/public'
+        }
+    }
+
+    dependencies {
+        compile 'com.shamanland:facebook-like-button:0.1.6-SNAPSHOT'
+    }
 
 Screenshots
 ----
