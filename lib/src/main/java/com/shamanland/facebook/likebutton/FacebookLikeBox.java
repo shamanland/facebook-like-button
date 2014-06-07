@@ -15,10 +15,12 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.Button;
 
 import com.shamanland.facebook.likebutton.FacebookLinkStatProcessor.Result;
 
+import static com.shamanland.facebook.likebutton.BuildConfig.LOGGING;
 import static com.shamanland.facebook.likebutton.CalloutPath.MARKER_BOTTOM;
 import static com.shamanland.facebook.likebutton.CalloutPath.MARKER_LEFT;
 import static com.shamanland.facebook.likebutton.CalloutPath.MARKER_NONE;
@@ -27,6 +29,7 @@ import static com.shamanland.facebook.likebutton.CalloutPath.MARKER_TOP;
 import static com.shamanland.facebook.likebutton.CalloutPath.factor;
 
 public class FacebookLikeBox extends Button {
+    private static final String LOG_TAG = FacebookLikeBox.class.getSimpleName();
     private static final Looper BACKGROUND;
 
     static {
@@ -200,7 +203,9 @@ public class FacebookLikeBox extends Button {
                 }
             });
         } catch (Throwable ex) {
-            // ignore
+            if (LOGGING) {
+                Log.wtf(LOG_TAG, ex);
+            }
         }
     }
 

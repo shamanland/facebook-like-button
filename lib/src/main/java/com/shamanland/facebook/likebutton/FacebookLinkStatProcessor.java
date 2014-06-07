@@ -1,5 +1,7 @@
 package com.shamanland.facebook.likebutton;
 
+import android.util.Log;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -10,7 +12,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 
+import static com.shamanland.facebook.likebutton.BuildConfig.LOGGING;
+
 public class FacebookLinkStatProcessor {
+    private static final String LOG_TAG = FacebookLinkStatProcessor.class.getSimpleName();
+
     public static class Result {
         public String url;
         public long shares;
@@ -38,6 +44,10 @@ public class FacebookLinkStatProcessor {
     }
 
     public Result processUrl(String url) throws IOException, JSONException {
+        if (LOGGING) {
+            Log.v(LOG_TAG, "processUrl: openConnection: " + url);
+        }
+
         URLConnection connection = new URL(getRequestUrl(url)).openConnection();
         BufferedReader reader = null;
 
@@ -58,6 +68,10 @@ public class FacebookLinkStatProcessor {
 
             if (connection instanceof HttpURLConnection) {
                 ((HttpURLConnection) connection).disconnect();
+            }
+
+            if (LOGGING) {
+                Log.v(LOG_TAG, "processUrl: disconnect: " + url);
             }
         }
     }

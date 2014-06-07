@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Message;
 import android.text.Html;
 import android.util.Base64;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.SoundEffectConstants;
 import android.view.View;
@@ -26,7 +27,11 @@ import java.net.URLEncoder;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import static com.shamanland.facebook.likebutton.BuildConfig.LOGGING;
+
 public class FacebookLikeActivity extends Activity {
+    private static final String LOG_TAG = FacebookLikeActivity.class.getSimpleName();
+
     public static final String PAGE_URL = "page.url";
     public static final String PAGE_TITLE = "page.title";
     public static final String PAGE_TEXT = "page.text";
@@ -129,6 +134,10 @@ public class FacebookLikeActivity extends Activity {
             return;
         }
 
+        if (LOGGING) {
+            Log.v(LOG_TAG, "onPostCreate: loadDataWithBaseURL: " + getIntent().getStringExtra(PAGE_URL));
+        }
+
         createWindow().loadDataWithBaseURL(getIntent().getStringExtra(PAGE_URL), content, "text/html", "utf-8", null);
     }
 
@@ -174,6 +183,10 @@ public class FacebookLikeActivity extends Activity {
         try {
             new java.net.URL(url);
         } catch (MalformedURLException ex) {
+            if (LOGGING) {
+                Log.wtf(LOG_TAG, ex);
+            }
+
             return null;
         }
 
@@ -221,6 +234,10 @@ public class FacebookLikeActivity extends Activity {
         try {
             return sb.toString();
         } catch (OutOfMemoryError ex) {
+            if (LOGGING) {
+                Log.wtf(LOG_TAG, ex);
+            }
+
             return null;
         }
     }
@@ -353,6 +370,10 @@ public class FacebookLikeActivity extends Activity {
             picture.compress(Bitmap.CompressFormat.PNG, 100, baos);
             return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
         } catch (Throwable ex) {
+            if (LOGGING) {
+                Log.wtf(LOG_TAG, ex);
+            }
+
             return null;
         }
     }
