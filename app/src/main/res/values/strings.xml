@@ -2,4 +2,6 @@
 <resources>
     <string name="app_name">Facebook Like</string>
     <string name="hello_world">Hello, Facebook!</string>
+    <string name="list">List</string>
+    <string name="open_browser">Open link in browser?</string>
 </resources>

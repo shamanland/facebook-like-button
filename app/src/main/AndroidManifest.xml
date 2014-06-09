@@ -24,6 +24,8 @@
                 android:label="@string/facebook"
                 android:theme="@style/Theme.Facebook.Like"
                 />
+
+        <activity android:name=".ListLikeActivity"/>
     </application>
 
 </manifest>
