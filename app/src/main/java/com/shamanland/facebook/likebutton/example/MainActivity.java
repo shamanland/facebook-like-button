@@ -6,12 +6,24 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         setContentView(R.layout.activity_main);
+
+        View.OnClickListener urlClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onProjectPageClicked(((TextView) view.findViewById(android.R.id.text1)).getText().toString());
+            }
+        };
+
+        findViewById(R.id.project_page).setOnClickListener(urlClickListener);
+        findViewById(R.id.sources).setOnClickListener(urlClickListener);
     }
 
     @Override
@@ -30,5 +42,14 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    protected void onProjectPageClicked(String url) {
+        Bundle args = new Bundle();
+        args.putString("url", url);
+
+        OpenUrlDialogFragment fragment = new OpenUrlDialogFragment();
+        fragment.setArguments(args);
+        fragment.show(getSupportFragmentManager(), "open.url");
     }
 }

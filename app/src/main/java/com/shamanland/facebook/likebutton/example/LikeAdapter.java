@@ -10,6 +10,8 @@ import com.shamanland.facebook.likebutton.FacebookLikeButton;
 
 public class LikeAdapter extends BaseAdapter {
     private static final String[] sTitles = {
+            "Facebook Like Button",
+            "Android FontIcon Library",
             "Android FontIcon library available from Maven Central",
             "Android Dashboards - June, 4th",
             "Facebook SDK available from Maven repository",
@@ -29,6 +31,8 @@ public class LikeAdapter extends BaseAdapter {
     };
 
     private static final String[] sUrls = {
+            "http://blog.shamanland.com/p/facebook-like-button.html",
+            "http://blog.shamanland.com/p/android-fonticon-library.html",
             "http://blog.shamanland.com/2014/06/android-fonticon-library-available-from.html",
             "http://blog.shamanland.com/2014/06/android-dashboards-june-4th.html",
             "http://blog.shamanland.com/2014/05/add-facebook-sdk-to-project.html",
@@ -48,6 +52,8 @@ public class LikeAdapter extends BaseAdapter {
     };
 
     private static final String[] sContents = {
+            "Implementation of Facebook social plugin 'Like' for Android. Official Facebook SDK does not provide such component for Android.",
+            "Android FontIcon is simple library which use font-based icons in Android.",
             "The latest version of FontIcon library for Android is available from Maven Central repository. It's easy to include it in project: Gradle repositories { mavenCentral() } dependencies { compile 'com.shamanland:fonticon:0.1.6' } Links Sources Project page",
             "This month Honeycomb devices are disappeared from official statistics about Android devices. There are three stable groups of API versions: Gingerbread (API 10) - 15% Ice Cream Sandwich and Jelly Bean (API 15-18) - 70% KitKat (API 19) - 14% Check details in this public spreadsheet.",
             "I don't know why Facebook still not published theirs SDK to Maven Central. Well, nobody forbids us to deploy it to Sonatype repository!",
@@ -67,6 +73,8 @@ public class LikeAdapter extends BaseAdapter {
     };
 
     private static final String[] sTimes = {
+            "June 09, 2014",
+            "June 09, 2014",
             "June 07, 2014",
             "June 07, 2014",
             "May 19, 2014",

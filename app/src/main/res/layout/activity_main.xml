@@ -13,12 +13,57 @@
             android:padding="@dimen/gap"
             >
 
-        <TextView
-                android:text="@string/hello_world"
+        <LinearLayout
+                android:id="@+id/project_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/gap"
-                />
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/gap"
+                    android:text="@string/project_page"
+                    />
+
+            <TextView
+                    android:id="@android:id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/project_url"
+                    android:textColor="@color/link"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    />
+        </LinearLayout>
+
+        <LinearLayout
+                android:id="@+id/sources"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                >
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/gap"
+                    android:text="@string/sources"
+                    />
+
+            <TextView
+                    android:id="@android:id/text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sources_url"
+                    android:textColor="@color/link"
+                    android:singleLine="true"
+                    android:ellipsize="end"
+                    />
+        </LinearLayout>
 
         <com.shamanland.facebook.likebutton.FacebookLikePlugin
                 android:layout_width="wrap_content"
