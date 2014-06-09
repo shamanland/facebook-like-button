@@ -115,6 +115,7 @@ public class LikeAdapter extends BaseAdapter {
         holder.title.setText(sTitles[position]);
         holder.time.setText(sTimes[position]);
         holder.content.setText(sContents[position]);
+        holder.like.setPageUrl(sUrls[position]);
 
         return result;
     }
@@ -123,11 +124,13 @@ public class LikeAdapter extends BaseAdapter {
         TextView title;
         TextView time;
         TextView content;
+        FacebookLikeButton like;
 
         ViewHolder(View view) {
             title = (TextView) view.findViewById(R.id.title);
             time = (TextView) view.findViewById(R.id.time);
             content = (TextView) view.findViewById(R.id.content);
+            like = (FacebookLikeButton) view.findViewById(R.id.com_facebook_like);
         }
 
         static ViewHolder obtain(View view) {

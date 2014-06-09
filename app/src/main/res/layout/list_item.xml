@@ -35,4 +35,24 @@
             android:layout_marginBottom="6dp"
             android:textSize="12sp"
             />
+
+    <com.shamanland.facebook.likebutton.FacebookLikePlugin
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/content"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal"
+            >
+
+        <com.shamanland.facebook.likebutton.FacebookLikeBox
+                style="@style/Widget.FacebookLikeBox"
+                app:calloutMarker="right"
+                android:focusable="false"
+                />
+
+        <com.shamanland.facebook.likebutton.FacebookLikeButton
+                style="@style/Widget.FacebookLikeButton"
+                android:focusable="false"
+                />
+    </com.shamanland.facebook.likebutton.FacebookLikePlugin>
 </RelativeLayout>
