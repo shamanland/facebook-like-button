@@ -120,13 +120,13 @@ public class FacebookLikeBox extends Button {
             mPath = new CalloutPath();
             mFill = new ShapeDrawable();
             mFill.getPaint().setStyle(Paint.Style.FILL);
-            mFill.getPaint().setColor(a.getColor(R.styleable.FacebookLikeBox_boxFillColor, r.getColor(R.color.com_facebook_like_box_background_color)));
+            mFill.getPaint().setColor(a.getColor(R.styleable.FacebookLikeBox_boxFillColor, r.getColor(R.color.com_shamanland_facebook_like_box_background_color)));
             mStroke = new ShapeDrawable();
             mStroke.getPaint().setStyle(Paint.Style.STROKE);
-            mStroke.getPaint().setColor(a.getColor(R.styleable.FacebookLikeBox_boxStrokeColor, r.getColor(R.color.com_facebook_like_box_text_color)));
+            mStroke.getPaint().setColor(a.getColor(R.styleable.FacebookLikeBox_boxStrokeColor, r.getColor(R.color.com_shamanland_facebook_like_box_text_color)));
             mStroke.getPaint().setAntiAlias(true);
-            mStroke.getPaint().setStrokeWidth(a.getDimension(R.styleable.FacebookLikeBox_boxStrokeWidth, r.getDimension(R.dimen.com_facebook_like_box_stroke_width)));
-            mCornerRadius = a.getDimension(R.styleable.FacebookLikeBox_boxCornersRadius, r.getDimension(R.dimen.com_facebook_like_corners_radius));
+            mStroke.getPaint().setStrokeWidth(a.getDimension(R.styleable.FacebookLikeBox_boxStrokeWidth, r.getDimension(R.dimen.com_shamanland_facebook_like_box_stroke_width)));
+            mCornerRadius = a.getDimension(R.styleable.FacebookLikeBox_boxCornersRadius, r.getDimension(R.dimen.com_shamanland_facebook_like_corners_radius));
             mCalloutMarker = a.getInt(R.styleable.FacebookLikeBox_calloutMarker, MARKER_NONE);
 
             initBackground();
@@ -173,7 +173,7 @@ public class FacebookLikeBox extends Button {
     }
 
     protected void onUrlChanged(String oldValue, String newValue) {
-        setText(R.string.com_facebook_like_box_text_default);
+        setText(R.string.com_shamanland_facebook_like_box_text_default);
 
         if (oldValue != null) {
             mHandler.removeMessages(0, oldValue);

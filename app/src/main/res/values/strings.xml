@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Facebook Like</string>
-    <string name="hello_world">Hello, Facebook!</string>
+    <string name="app_name">Facebook Like Demo</string>
+    <string name="open_browser">Open link in browser?</string>
+    <string name="list">List example</string>
+    <string name="project_page">Project page:</string>
+    <string name="sources">Sources:</string>
+    <string name="project_url">http://blog.shamanland.com/p/facebook-like-button.html</string>
+    <string name="sources_url">https://github.com/shamanland/facebook-like-button</string>
 </resources>

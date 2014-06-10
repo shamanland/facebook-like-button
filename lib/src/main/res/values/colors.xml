@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="com_facebook_button_blue_normal_start">#5975b0</color>
-    <color name="com_facebook_button_blue_normal_end">#50699e</color>
-    <color name="com_facebook_button_blue_focused_start">#7a90bf</color>
-    <color name="com_facebook_button_blue_focused_end">#6982b7</color>
-    <color name="com_facebook_button_blue_focused_stroke">#375196</color>
-    <color name="com_facebook_button_blue_pressed_start">#3b538e</color>
-    <color name="com_facebook_button_blue_pressed_end">#425d9e</color>
-    <color name="com_facebook_button_blue_pressed_stroke">#344a7e</color>
-    <color name="com_facebook_like_box_text_color">#898f9c</color>
-    <color name="com_facebook_like_box_background_color">#8fff</color>
-    <color name="com_facebook_like_text_color">#fff</color>
+    <color name="com_shamanland_facebook_button_blue_normal_start">#5975b0</color>
+    <color name="com_shamanland_facebook_button_blue_normal_end">#50699e</color>
+    <color name="com_shamanland_facebook_button_blue_focused_start">#7a90bf</color>
+    <color name="com_shamanland_facebook_button_blue_focused_end">#6982b7</color>
+    <color name="com_shamanland_facebook_button_blue_focused_stroke">#375196</color>
+    <color name="com_shamanland_facebook_button_blue_pressed_start">#3b538e</color>
+    <color name="com_shamanland_facebook_button_blue_pressed_end">#425d9e</color>
+    <color name="com_shamanland_facebook_button_blue_pressed_stroke">#344a7e</color>
+    <color name="com_shamanland_facebook_like_box_text_color">#898f9c</color>
+    <color name="com_shamanland_facebook_like_box_background_color">#8fff</color>
+    <color name="com_shamanland_facebook_like_text_color">#fff</color>
 </resources>

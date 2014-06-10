@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Widget.FacebookLikeButtonBase" parent="@android:style/Widget.Button">
-        <item name="android:id">@id/com_facebook_like</item>
+        <item name="android:id">@id/com_shamanland_facebook_like</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">@dimen/com_facebook_like_height</item>
-        <item name="android:minWidth">@dimen/com_facebook_like_height</item>
+        <item name="android:layout_height">@dimen/com_shamanland_facebook_like_height</item>
+        <item name="android:minWidth">@dimen/com_shamanland_facebook_like_height</item>
         <item name="android:minHeight">1dp</item>
-        <item name="android:text">@string/like</item>
-        <item name="android:textColor">@color/com_facebook_like_text_color</item>
-        <item name="android:textSize">@dimen/com_facebook_like_text_size</item>
+        <item name="android:text">@string/com_shamanland_like</item>
+        <item name="android:textColor">@color/com_shamanland_facebook_like_text_color</item>
+        <item name="android:textSize">@dimen/com_shamanland_facebook_like_text_size</item>
         <item name="android:shadowColor">@android:color/black</item>
-        <item name="android:drawablePadding">@dimen/com_facebook_like_compound_drawable_padding</item>
-        <item name="android:paddingLeft">@dimen/com_facebook_like_padding_left</item>
-        <item name="android:paddingTop">@dimen/com_facebook_like_padding_top</item>
-        <item name="android:paddingRight">@dimen/com_facebook_like_padding_right</item>
-        <item name="android:paddingBottom">@dimen/com_facebook_like_padding_bottom</item>
-        <item name="android:background">@drawable/com_facebook_button_blue</item>
-        <item name="android:drawableLeft">@drawable/com_facebook_inverse_icon</item>
+        <item name="android:drawablePadding">@dimen/com_shamanland_facebook_like_compound_drawable_padding</item>
+        <item name="android:paddingLeft">@dimen/com_shamanland_facebook_like_padding_left</item>
+        <item name="android:paddingTop">@dimen/com_shamanland_facebook_like_padding_top</item>
+        <item name="android:paddingRight">@dimen/com_shamanland_facebook_like_padding_right</item>
+        <item name="android:paddingBottom">@dimen/com_shamanland_facebook_like_padding_bottom</item>
+        <item name="android:background">@drawable/com_shamanland_facebook_button_blue</item>
+        <item name="android:drawableLeft">@drawable/com_shamanland_facebook_inverse_icon</item>
     </style>
     <style name="Widget.FacebookLikeButton" parent="Widget.FacebookLikeButtonBase">
         <item name="android:shadowRadius">1</item>
@@ -24,17 +24,17 @@
         <item name="android:shadowDy">-1</item>
     </style>
     <style name="Widget.FacebookLikeBox" parent="@android:style/Widget.Button">
-        <item name="android:id">@id/com_facebook_like_box</item>
+        <item name="android:id">@id/com_shamanland_facebook_like_box</item>
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">@dimen/com_facebook_like_height</item>
-        <item name="android:minWidth">@dimen/com_facebook_like_height</item>
+        <item name="android:layout_height">@dimen/com_shamanland_facebook_like_height</item>
+        <item name="android:minWidth">@dimen/com_shamanland_facebook_like_height</item>
         <item name="android:minHeight">1dp</item>
-        <item name="android:text">@string/com_facebook_like_box_text_default</item>
-        <item name="android:textColor">@color/com_facebook_like_box_text_color</item>
-        <item name="android:textSize">@dimen/com_facebook_like_text_size</item>
-        <item name="android:paddingLeft">@dimen/com_facebook_like_box_padding_left</item>
-        <item name="android:paddingTop">@dimen/com_facebook_like_box_padding_top</item>
-        <item name="android:paddingRight">@dimen/com_facebook_like_box_padding_right</item>
-        <item name="android:paddingBottom">@dimen/com_facebook_like_box_padding_bottom</item>
+        <item name="android:text">@string/com_shamanland_facebook_like_box_text_default</item>
+        <item name="android:textColor">@color/com_shamanland_facebook_like_box_text_color</item>
+        <item name="android:textSize">@dimen/com_shamanland_facebook_like_text_size</item>
+        <item name="android:paddingLeft">@dimen/com_shamanland_facebook_like_box_padding_left</item>
+        <item name="android:paddingTop">@dimen/com_shamanland_facebook_like_box_padding_top</item>
+        <item name="android:paddingRight">@dimen/com_shamanland_facebook_like_box_padding_right</item>
+        <item name="android:paddingBottom">@dimen/com_shamanland_facebook_like_box_padding_bottom</item>
     </style>
 </resources>

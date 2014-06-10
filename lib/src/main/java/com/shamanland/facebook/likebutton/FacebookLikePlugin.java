@@ -46,8 +46,8 @@ public class FacebookLikePlugin extends LinearLayout {
         }
 
         try {
-            mLikeId = a.getResourceId(R.styleable.FacebookLikePlugin_likeId, R.id.com_facebook_like);
-            mBoxId = a.getResourceId(R.styleable.FacebookLikePlugin_boxId, R.id.com_facebook_like_box);
+            mLikeId = a.getResourceId(R.styleable.FacebookLikePlugin_likeId, R.id.com_shamanland_facebook_like);
+            mBoxId = a.getResourceId(R.styleable.FacebookLikePlugin_boxId, R.id.com_shamanland_facebook_like_box);
         } finally {
             a.recycle();
         }
