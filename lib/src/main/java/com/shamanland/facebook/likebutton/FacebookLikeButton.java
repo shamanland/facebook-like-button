@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
@@ -17,7 +16,10 @@ public class FacebookLikeButton extends Button {
     private String mPageUrl;
     private String mPageTitle;
     private String mPageText;
+    @Deprecated
     private Bitmap mPagePicture;
+    private String mPagePictureUrl;
+    private int mPagePictureId;
     private String mAppId;
     private int mContentViewId;
     private FacebookLikeOptions mOptions;
@@ -52,11 +54,15 @@ public class FacebookLikeButton extends Button {
         mPageText = pageText;
     }
 
+    @Deprecated
     public Bitmap getPagePicture() {
+        //noinspection deprecation
         return mPagePicture;
     }
 
+    @Deprecated
     public void setPagePicture(Bitmap pagePicture) {
+        //noinspection deprecation
         mPagePicture = pagePicture;
     }
 
@@ -127,9 +133,10 @@ public class FacebookLikeButton extends Button {
             mPageTitle = a.getString(R.styleable.FacebookLikeButton_pageTitle);
             mPageText = a.getString(R.styleable.FacebookLikeButton_pageText);
 
-            int pictureId = a.getResourceId(R.styleable.FacebookLikeButton_pagePicture, 0);
-            if (pictureId != 0) {
-                mPagePicture = BitmapFactory.decodeResource(getResources(), pictureId);
+            mPagePictureUrl = a.getString(R.styleable.FacebookLikeButton_pagePictureUrl);
+            mPagePictureId = a.getResourceId(R.styleable.FacebookLikeButton_pagePictureId, 0);
+            if (mPagePictureId == 0) {
+                mPagePictureId = a.getResourceId(R.styleable.FacebookLikeButton_pagePicture, 0);
             }
 
             mAppId = a.getString(R.styleable.FacebookLikeButton_appId);
@@ -178,7 +185,15 @@ public class FacebookLikeButton extends Button {
         intent.putExtra(FacebookLikeActivity.PAGE_URL, mPageUrl);
         intent.putExtra(FacebookLikeActivity.PAGE_TITLE, mPageTitle);
         intent.putExtra(FacebookLikeActivity.PAGE_TEXT, mPageText);
-        intent.putExtra(FacebookLikeActivity.PAGE_PICTURE, mPagePicture);
+        intent.putExtra(FacebookLikeActivity.PAGE_PICTURE_URL, mPagePictureUrl);
+        intent.putExtra(FacebookLikeActivity.PAGE_PICTURE_ID, mPagePictureId);
+
+        //noinspection deprecation
+        if (mPagePictureUrl == null && mPagePictureId == 0 && mPagePicture != null) {
+            //noinspection deprecation
+            intent.putExtra(FacebookLikeActivity.PAGE_PICTURE, mPagePicture);
+        }
+
         intent.putExtra(FacebookLikeActivity.APP_ID, mAppId);
         intent.putExtra(FacebookLikeActivity.CONTENT_VIEW_ID, mContentViewId);
         intent.putExtra(FacebookLikeActivity.OPTIONS, mOptions);
