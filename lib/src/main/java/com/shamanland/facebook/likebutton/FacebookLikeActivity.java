@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Message;
@@ -35,7 +36,20 @@ public class FacebookLikeActivity extends Activity {
     public static final String PAGE_URL = "page.url";
     public static final String PAGE_TITLE = "page.title";
     public static final String PAGE_TEXT = "page.text";
+    /**
+     * Use {@link #PAGE_PICTURE_URL} or {@link #PAGE_PICTURE_ID}.
+     * This param has the lowest priority.
+     */
+    @Deprecated
     public static final String PAGE_PICTURE = "page.picture";
+    /**
+     * This param has the highest priority.
+     */
+    public static final String PAGE_PICTURE_URL = "page.picture.url";
+    /**
+     * This param has normal priority.
+     */
+    public static final String PAGE_PICTURE_ID = "page.picture.id";
     public static final String APP_ID = "app.id";
     public static final String CONTENT_VIEW_ID = "content.view.id";
     public static final String OPTIONS = "options";
@@ -192,7 +206,6 @@ public class FacebookLikeActivity extends Activity {
 
         String title = getIntent().getStringExtra(PAGE_TITLE);
         String text = getIntent().getStringExtra(PAGE_TEXT);
-        Bitmap picture = getIntent().getParcelableExtra(PAGE_PICTURE);
         String appId = getIntent().getStringExtra(APP_ID);
         FacebookLikeOptions options = getIntent().getParcelableExtra(OPTIONS);
         if (options == null) {
@@ -210,15 +223,7 @@ public class FacebookLikeActivity extends Activity {
             sb.append(options.titleClose);
         }
 
-        if (picture != null) {
-            String picture64 = bitmapToBase64(picture, getPictureSize());
-            if (picture64 != null) {
-                sb.append("<img ");
-                sb.append(options.pictureAttrs);
-                sb.append("src='data:image/png;base64,").append(picture64).append("'");
-                sb.append("/>");
-            }
-        }
+        appendImg(options, sb);
 
         if (text != null) {
             sb.append(options.textOpen);
@@ -242,7 +247,50 @@ public class FacebookLikeActivity extends Activity {
         }
     }
 
-    @SuppressWarnings("deprecation")
+    private void appendImg(FacebookLikeOptions options, StringBuilder sb) {
+        int[] size = null;
+
+        CharSequence imgSrc = getIntent().getStringExtra(PAGE_PICTURE_URL);
+        if (imgSrc == null) {
+            Bitmap picture = null;
+
+            int pictureId = getIntent().getIntExtra(PAGE_PICTURE_ID, 0);
+            if (pictureId != 0) {
+                picture = BitmapFactory.decodeResource(getResources(), pictureId);
+            }
+
+            if (picture == null) {
+                //noinspection deprecation
+                picture = getIntent().getParcelableExtra(PAGE_PICTURE);
+            }
+
+            if (picture != null) {
+                StringBuilder tmp = new StringBuilder("data:image/png;base64,");
+                String base64 = bitmapToBase64(picture, getPictureSize(), size = new int[2]);
+                if (base64 != null) {
+                    tmp.append(base64);
+                    imgSrc = tmp;
+                }
+            }
+        }
+
+        if (imgSrc != null) {
+            sb.append("<img ");
+            sb.append(options.pictureAttrs);
+            sb.append("src='").append(imgSrc).append("'");
+
+            if (size != null) {
+                sb.append("width='").append(size[0]).append("'");
+                sb.append("height='").append(size[1]).append("'");
+            } else {
+                sb.append("width='").append(getPictureSize()).append("'");
+                sb.append("height='auto'");
+            }
+
+            sb.append("/>");
+        }
+    }
+
     private void appendUrl(String url, String appId, FacebookLikeOptions options, StringBuilder sb) {
         sb.append("<iframe ");
         sb.append("style='");
@@ -251,6 +299,7 @@ public class FacebookLikeActivity extends Activity {
         sb.append("'");
 
         sb.append("src='//www.facebook.com/plugins/like.php");
+        //noinspection deprecation
         sb.append("?href=").append(URLEncoder.encode(url));
         sb.append("&layout=").append(options.getLayoutString());
         sb.append("&action=").append(options.getActionString());
@@ -352,7 +401,7 @@ public class FacebookLikeActivity extends Activity {
         }
     }
 
-    public static String bitmapToBase64(Bitmap picture, int size) {
+    public static String bitmapToBase64(Bitmap picture, int size, int[] outSize) {
         try {
             int w = picture.getWidth();
             int h = picture.getHeight();
@@ -365,6 +414,9 @@ public class FacebookLikeActivity extends Activity {
 
                 picture = Bitmap.createScaledBitmap(picture, w, h, false);
             }
+
+            outSize[0] = w;
+            outSize[1] = h;
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             picture.compress(Bitmap.CompressFormat.PNG, 100, baos);
@@ -392,6 +444,6 @@ public class FacebookLikeActivity extends Activity {
         return Math.min(
                 getWindowManager().getDefaultDisplay().getWidth(),
                 getWindowManager().getDefaultDisplay().getHeight()
-        ) / 4;
+        ) / 8;
     }
 }

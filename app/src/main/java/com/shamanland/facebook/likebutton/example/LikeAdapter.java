@@ -124,6 +124,8 @@ public class LikeAdapter extends BaseAdapter {
         holder.time.setText(sTimes[position]);
         holder.content.setText(sContents[position]);
         holder.like.setPageUrl(sUrls[position]);
+        holder.like.setPageTitle(sTitles[position]);
+        holder.like.setPageText(sContents[position]);
 
         return result;
     }

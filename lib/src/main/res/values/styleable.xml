@@ -4,7 +4,10 @@
         <attr name="pageUrl" format="string|reference"/>
         <attr name="pageTitle" format="string|reference"/>
         <attr name="pageText" format="string|reference"/>
+        <!-- pagePicture is @deprecated, use pagePictureId -->
         <attr name="pagePicture" format="reference"/>
+        <attr name="pagePictureId" format="reference"/>
+        <attr name="pagePictureUrl" format="string|reference"/>
         <attr name="appId" format="string|reference"/>
         <attr name="contentViewId" format="reference"/>
         <attr name="optTitleOpen" format="string|reference"/>

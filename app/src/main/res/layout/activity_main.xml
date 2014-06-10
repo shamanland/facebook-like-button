@@ -77,7 +77,7 @@
                     app:pageUrl="http://blog.shamanland.com/"
                     app:pageTitle="Developer's notes"
                     app:pageText="This is blog about Android development."
-                    app:pagePicture="@drawable/ic_launcher"
+                    app:pagePictureUrl="https://drive.google.com/uc?id=0Bwh0SNLPmjQBS0UteVcwNU1VbjA"
                     />
 
             <com.shamanland.facebook.likebutton.FacebookLikeBox
@@ -107,7 +107,7 @@
                     app:pageUrl="http://blog.shamanland.com/"
                     app:pageTitle="Developer's notes"
                     app:pageText="This is blog about Android development."
-                    app:pagePicture="@drawable/ic_launcher"
+                    app:pagePictureId="@drawable/blog"
                     />
         </com.shamanland.facebook.likebutton.FacebookLikePlugin>
 
@@ -135,7 +135,7 @@
                     app:pageUrl="http://blog.shamanland.com/"
                     app:pageTitle="Developer's notes"
                     app:pageText="This is blog about Android development."
-                    app:pagePicture="@drawable/ic_launcher"
+                    app:pagePictureId="@drawable/blog"
                     app:optLayout="box_count"
                     />
         </com.shamanland.facebook.likebutton.FacebookLikePlugin>
@@ -157,7 +157,7 @@
                     app:pageUrl="http://blog.shamanland.com/"
                     app:pageTitle="Developer's notes"
                     app:pageText="This is blog about Android development."
-                    app:pagePicture="@drawable/ic_launcher"
+                    app:pagePictureId="@drawable/blog"
                     app:optLayout="box_count"
                     />
 
@@ -177,7 +177,7 @@
                 app:pageUrl="http://blog.shamanland.com/"
                 app:pageTitle="Developer's notes"
                 app:pageText="This is blog about Android development."
-                app:pagePicture="@drawable/ic_launcher"
+                app:pagePictureId="@drawable/blog"
                 app:optAction="recommend"
                 app:optLayout="button_count"
                 />

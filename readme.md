@@ -40,29 +40,29 @@ Snapshot dependency:
 Screenshots
 ----
 
-Various layout available for any of your purposes:
+Easy integration with ListView.
 
-<img src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBUUFTeXJBS3N2SGc" width="169" height="286" />
+<a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBOWRYYU9Bb1pwWk0"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBU0JpdUI2YjBqLTg" width="189" /></a>
 
-Button supports pressed styles according to Facebook color palette:
+Various layout available for any of your purposes.
 
-<img src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBbDBKSnNUUnowdUE" width="169" height="286" />
+<a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBUUFTeXJBS3N2SGc"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBZUh6TThEdlJvZXM" width="189" /></a>
 
-Custom web-page will be shown with ``<iframe>`` plugin:
+Custom web-page will be shown with &lt;iframe&gt; plugin.
 
-<img src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBVHhhZXNaMVVQTnM" width="169" height="286" />
+<a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBVHhhZXNaMVVQTnM"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBdHBUNE5uM0ZwZ2M" width="189" /></a>
 
-User will be asked to login on official Facebook site:
+User will be asked to login on official Facebook site.
 
-<img src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBbGtJejcyYTVvaVk" width="169" height="286" />
+<a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBbGtJejcyYTVvaVk"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBTVZJYktuWUpSUHc" width="189" /></a>
 
-Original Facebook ``<iframe>`` based plugin works inside ``WebView``:
+Original Facebook &lt;iframe&gt; based plugin works inside WebView.
 
-<img src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBNnU0YzlDVWxKems" width="169" height="286" />
+<a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBNnU0YzlDVWxKems"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBeVhYR1dsYkw0cHM" width="189" /></a>
 
-You can set up any of Facebook options:
+You can set up any of Facebook options.
 
-<img src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBQ1lrU3JObXIwWUk" width="169" height="286" />
+<a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBQ1lrU3JObXIwWUk"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBMy1xWTNyVnhYVEk" width="189" /></a>
 
 How to use
 ----
