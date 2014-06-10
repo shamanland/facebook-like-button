@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="id" name="com_facebook_like"/>
-    <item type="id" name="com_facebook_like_share"/>
-    <item type="id" name="com_facebook_like_recommend"/>
-    <item type="id" name="com_facebook_like_box"/>
-    <item type="id" name="com_facebook_like_container"/>
+    <item type="id" name="com_shamanland_facebook_like"/>
+    <item type="id" name="com_shamanland_facebook_like_share"/>
+    <item type="id" name="com_shamanland_facebook_like_recommend"/>
+    <item type="id" name="com_shamanland_facebook_like_box"/>
+    <item type="id" name="com_shamanland_facebook_like_container"/>
 </resources>

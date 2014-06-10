@@ -138,7 +138,7 @@ public class LikeAdapter extends BaseAdapter {
             title = (TextView) view.findViewById(R.id.title);
             time = (TextView) view.findViewById(R.id.time);
             content = (TextView) view.findViewById(R.id.content);
-            like = (FacebookLikeButton) view.findViewById(R.id.com_facebook_like);
+            like = (FacebookLikeButton) view.findViewById(R.id.com_shamanland_facebook_like);
         }
 
         static ViewHolder obtain(View view) {

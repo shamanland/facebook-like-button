@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="facebook">Facebook</string>
-    <string name="like">Like</string>
-    <string name="share">Share</string>
-    <string name="recommend">Recommend</string>
-    <string name="com_facebook_like_box_text_default">0</string>
-    <string name="com_facebook_like_activity_error">Action \'like\' could not be done</string>
+    <string name="com_shamanland_facebook">Facebook</string>
+    <string name="com_shamanland_like">Like</string>
+    <string name="com_shamanland_share">Share</string>
+    <string name="com_shamanland_recommend">Recommend</string>
+    <string name="com_shamanland_facebook_like_box_text_default">0</string>
+    <string name="com_shamanland_facebook_like_activity_error">Action \'like\' could not be done</string>
 </resources>

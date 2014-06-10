@@ -21,7 +21,7 @@
 
         <activity
                 android:name="com.shamanland.facebook.likebutton.FacebookLikeActivity"
-                android:label="@string/facebook"
+                android:label="@string/com_shamanland_facebook"
                 android:theme="@style/Theme.Facebook.Like"
                 />
 

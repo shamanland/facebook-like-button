@@ -129,7 +129,7 @@ public class FacebookLikeActivity extends Activity {
 
         String content = generateContent();
         if (content == null) {
-            Toast.makeText(getApplication(), R.string.com_facebook_like_activity_error, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), R.string.com_shamanland_facebook_like_activity_error, Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
@@ -278,7 +278,7 @@ public class FacebookLikeActivity extends Activity {
         }
 
         if (result != null) {
-            View container = result.findViewById(R.id.com_facebook_like_container);
+            View container = result.findViewById(R.id.com_shamanland_facebook_like_container);
             if (container instanceof ViewGroup) {
                 mContainer = (ViewGroup) container;
             }
@@ -314,7 +314,7 @@ public class FacebookLikeActivity extends Activity {
         if (parent instanceof ViewGroup) {
             ViewGroup wrapper = (ViewGroup) parent;
 
-            View result = getLayoutInflater().inflate(R.layout.com_facebook_like_activity_progress, wrapper, false);
+            View result = getLayoutInflater().inflate(R.layout.com_shamanland_facebook_like_activity_progress, wrapper, false);
             if (result != null) {
                 wrapper.addView(result, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 result.setOnTouchListener(SKIP_TOUCH);
