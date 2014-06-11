@@ -66,6 +66,22 @@ public class FacebookLikeButton extends Button {
         mPagePicture = pagePicture;
     }
 
+    public String getPagePictureUrl() {
+        return mPagePictureUrl;
+    }
+
+    public void setPagePictureUrl(String pagePictureUrl) {
+        mPagePictureUrl = pagePictureUrl;
+    }
+
+    public int getPagePictureId() {
+        return mPagePictureId;
+    }
+
+    public void setPagePictureId(int pagePictureId) {
+        mPagePictureId = pagePictureId;
+    }
+
     public String getAppId() {
         return mAppId;
     }
