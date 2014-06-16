@@ -1,6 +1,8 @@
 Facebook Like Button
 ====
 
+[![Build Status](https://travis-ci.org/shamanland/facebook-like-button.svg?branch=snapshot)](https://travis-ci.org/shamanland/facebook-like-button)
+
 Implementation of [Facebook 'Like' social plugin][8] for Android.
 
 Official [Facebook SDK][12] does not provide such component for Android.
