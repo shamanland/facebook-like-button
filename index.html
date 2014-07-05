@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Facebook-like-button by shamanland</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Facebook-like-button</h1>
+        <p>Implementation of Facebook social plugin &#39;Like&#39; for Android</p>
+        <p class="view"><a href="https://github.com/shamanland/facebook-like-button">View the Project on GitHub <small>shamanland/facebook-like-button</small></a></p>
+        <ul>
+          <li><a href="https://github.com/shamanland/facebook-like-button/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/shamanland/facebook-like-button/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/shamanland/facebook-like-button">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="facebook-like-button" class="anchor" href="#facebook-like-button"><span class="octicon octicon-link"></span></a>Facebook Like Button</h1>
+
+<p><a href="https://travis-ci.org/shamanland/facebook-like-button"><img src="https://travis-ci.org/shamanland/facebook-like-button.svg?branch=snapshot" alt="Build Status"></a></p>
+
+<p>Implementation of <a href="https://developers.facebook.com/docs/plugins/like-button">Facebook 'Like' social plugin</a> for Android.</p>
+
+<p>Official <a href="http://blog.shamanland.com/2014/05/add-facebook-sdk-to-project.html">Facebook SDK</a> does not provide such component for Android.</p>
+
+<p>This library uses <code>WebView</code> to display <code>&lt;iframe&gt;</code> based plugin.</p>
+
+<h2>
+<a name="project-page" class="anchor" href="#project-page"><span class="octicon octicon-link"></span></a>Project page</h2>
+
+<p><a href="http://blog.shamanland.com/p/facebook-like-button.html">http://blog.shamanland.com/p/facebook-like-button.html</a></p>
+
+<h2>
+<a name="gradle-dependency" class="anchor" href="#gradle-dependency"><span class="octicon octicon-link"></span></a>Gradle dependency</h2>
+
+<p>Release dependency:</p>
+
+<pre><code>repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'com.shamanland:facebook-like-button:0.1.6'
+}
+</code></pre>
+
+<p>Snapshot dependency:</p>
+
+<pre><code>repositories {
+    maven {
+        url 'https://oss.sonatype.org/content/groups/public'
+    }
+}
+
+dependencies {
+    compile 'com.shamanland:facebook-like-button:0.1.6-SNAPSHOT'
+}
+</code></pre>
+
+<h2>
+<a name="screenshots" class="anchor" href="#screenshots"><span class="octicon octicon-link"></span></a>Screenshots</h2>
+
+<p>Easy integration with ListView.</p>
+
+<p><a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBOWRYYU9Bb1pwWk0"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBU0JpdUI2YjBqLTg" width="189"></a></p>
+
+<p>Various layout available for any of your purposes.</p>
+
+<p><a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBUUFTeXJBS3N2SGc"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBZUh6TThEdlJvZXM" width="189"></a></p>
+
+<p>Custom web-page will be shown with &lt;iframe&gt; plugin.</p>
+
+<p><a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBVHhhZXNaMVVQTnM"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBdHBUNE5uM0ZwZ2M" width="189"></a></p>
+
+<p>User will be asked to login on official Facebook site.</p>
+
+<p><a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBbGtJejcyYTVvaVk"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBTVZJYktuWUpSUHc" width="189"></a></p>
+
+<p>Original Facebook &lt;iframe&gt; based plugin works inside WebView.</p>
+
+<p><a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBNnU0YzlDVWxKems"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBeVhYR1dsYkw0cHM" width="189"></a></p>
+
+<p>You can set up any of Facebook options.</p>
+
+<p><a href="https://drive.google.com/uc?id=0Bwh0SNLPmjQBQ1lrU3JObXIwWUk"><img border="0" height="320" src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBMy1xWTNyVnhYVEk" width="189"></a></p>
+
+<h2>
+<a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>How to use</h2>
+
+<ol>
+<li>Declare FacebookLikeActivity in your AndroidManifest.xml:</li>
+</ol><pre><code>&lt;activity
+    android:name="com.shamanland.facebook.likebutton.FacebookLikeActivity"
+    android:label="@string/facebook"
+    android:theme="@style/Theme.Facebook.Like"
+    /&gt;
+</code></pre>
+
+<ol>
+<li>Insert one of possible buttons in your layout:</li>
+</ol><p>Single 'Like' button: <img src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBRGRSdDhFUXJReUU" alt="9"></p>
+
+<pre><code>&lt;com.shamanland.facebook.likebutton.FacebookLikeButton
+        style="@style/Widget.FacebookLikeButton"
+        app:pageUrl="http://blog.shamanland.com/"
+        app:pageTitle="Developer's notes"
+        app:pageText="This is blog about Android development."
+        app:pagePicture="@drawable/ic_launcher"
+        /&gt;
+</code></pre>
+
+<p>'Like' plugin with box: <img src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBa2lwanpVbm56T00" alt="10"></p>
+
+<pre><code>&lt;!-- FacebookLikePlugin extends LinearLayout --&gt;
+&lt;com.shamanland.facebook.likebutton.FacebookLikePlugin
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        &gt;
+    &lt;com.shamanland.facebook.likebutton.FacebookLikeButton
+            style="@style/Widget.FacebookLikeButton"
+            app:pageUrl="http://blog.shamanland.com/"
+            app:pageTitle="Developer's notes"
+            app:pageText="This is blog about Android development."
+            app:pagePicture="@drawable/ic_launcher"
+            /&gt;
+    &lt;com.shamanland.facebook.likebutton.FacebookLikeBox
+            style="@style/Widget.FacebookLikeBox"
+            app:calloutMarker="left"
+            /&gt;
+&lt;/com.shamanland.facebook.likebutton.FacebookLikePlugin&gt;
+</code></pre>
+
+<p>'Like' plugin with box above, custom name: <img src="https://drive.google.com/uc?id=0Bwh0SNLPmjQBZ2xUTzlVbzd2LXM" alt="11"></p>
+
+<pre><code>&lt;!-- FacebookLikePlugin extends LinearLayout --&gt;
+&lt;com.shamanland.facebook.likebutton.FacebookLikePlugin
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        &gt;
+    &lt;com.shamanland.facebook.likebutton.FacebookLikeBox
+            style="@style/Widget.FacebookLikeBox"
+            android:layout_width="match_parent"
+            app:calloutMarker="bottom"
+            /&gt;
+    &lt;com.shamanland.facebook.likebutton.FacebookLikeButton
+            style="@style/Widget.FacebookLikeButton"
+            android:layout_width="match_parent"
+            android:text="@string/share"
+            app:pageUrl="http://blog.shamanland.com/"
+            app:pageTitle="Developer's notes"
+            app:pageText="This is blog about Android development."
+            app:pagePicture="@drawable/ic_launcher"
+            /&gt;
+&lt;/com.shamanland.facebook.likebutton.FacebookLikePlugin&gt;
+</code></pre>
+
+<h2>
+<a name="properties" class="anchor" href="#properties"><span class="octicon octicon-link"></span></a>Properties</h2>
+
+<p><strong>FacebookLikeButton</strong></p>
+
+<p><code>app:pageUrl</code> - string - <strong>required</strong> - target url</p>
+
+<p><code>app:pageTitle</code> - string - <em>recommended</em> - title of page</p>
+
+<p><code>app:pageText</code> - string - <em>recommended</em> - short description of page</p>
+
+<p><code>app:pagePicture</code> - bitmap - <em>recommended</em> - small picture from page</p>
+
+<p><code>app:appId</code> - string - <em>optional</em> - id of registered Facebook application</p>
+
+<p><code>app:optLayout</code> - enum - <em>optional</em> - type of layout inside </p>
+
+<p>values: <code>standard</code>, <code>box_count</code>, <code>button_count</code>, <code>button</code></p>
+
+<p><code>app:optAction</code> - enum - <em>optional</em> - type of action inside </p>
+
+<p>values: <code>like</code>, <code>recommend</code></p>
+
+<p><code>app:optShowFaces</code> - boolean - <em>optional</em> - enable/disable faces of friends inside </p>
+
+<p><code>app:optShare</code> - boolean - <em>optional</em> - enable/disable 'Share' button inside </p>
+
+<p><code>app:contentViewId</code> - layout - <em>not-recommended</em> - custom layout for dialog, must contains ViewGroup with id <code>R.id.com_facebook_like_container</code></p>
+
+<p><code>app:optTitleOpen</code> - string - <em>not-recommended</em> - open-tag for title</p>
+
+<p><code>app:optTitleClose</code> - string - <em>not-recommended</em> - close-tag for title</p>
+
+<p><code>app:optTextOpen</code> - string - <em>not-recommended</em> - open-tag for text</p>
+
+<p><code>app:optTextClose</code> - string - <em>not-recommended</em> - close-tag for text</p>
+
+<p><code>app:optPictureAttrs</code> - string - <em>not-recommended</em> - attributes for <img> tag</p>
+
+<p><strong>FacebookLikeBox</strong></p>
+
+<p><code>calloutMarker</code> - enum - <em>recommended</em> - position of callout triangle</p>
+
+<p>values: <code>none</code>, <code>left</code>, <code>top</code>, <code>right</code>, <code>bottom</code>, <code>all</code></p>
+
+<p><code>boxFillColor</code> - color - <em>optional</em> - background color of box</p>
+
+<p><code>boxStrokeColor</code> - color - <em>optional</em> - stroke color of box</p>
+
+<p><code>boxStrokeWidth</code> - dimension - <em>optional</em> - stroke width of box</p>
+
+<p><code>boxCornersRadius</code> - dimension - <em>optional</em> - radius of corners of box</p>
+
+<p><strong>FacebookLikePlugin</strong></p>
+
+<p><code>likeId</code> - id - <em>recommended</em> - id of child <code>FacebookLikeButton</code>, default value if <code>R.id.com_facebook_like</code></p>
+
+<p><code>boxId</code> - id - <em>recommended</em> - id of child <code>FacebookLikeBox</code>, default value if <code>R.id.com_facebook_box</code></p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Copyright 2014 ShamanLand.Com
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/shamanland">shamanland</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
