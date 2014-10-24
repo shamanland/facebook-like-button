@@ -1,7 +1,7 @@
 Facebook Like Button
 ====
 
-[![Build Status](https://travis-ci.org/shamanland/facebook-like-button.svg?branch=snapshot)](https://travis-ci.org/shamanland/facebook-like-button)
+[![Build Status](https://travis-ci.org/shamanland/facebook-like-button.svg?branch=master)](https://travis-ci.org/shamanland/facebook-like-button)
 
 Implementation of [Facebook 'Like' social plugin][8] for Android.
 
@@ -17,26 +17,8 @@ http://blog.shamanland.com/p/facebook-like-button.html
 Gradle dependency
 ----
 
-Release dependency:
-
-    repositories {
-        mavenCentral()
-    }
-
     dependencies {
-        compile 'com.shamanland:facebook-like-button:0.1.6'
-    }
-
-Snapshot dependency:
-
-    repositories {
-        maven {
-            url 'https://oss.sonatype.org/content/groups/public'
-        }
-    }
-
-    dependencies {
-        compile 'com.shamanland:facebook-like-button:0.1.6-SNAPSHOT'
+        compile 'com.shamanland:facebook-like-button:0.1.8'
     }
 
 Screenshots
